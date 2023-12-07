@@ -23,11 +23,12 @@ Rails.application.routes.draw do
       collection do
         patch :withdrawal
       end
+      resources :bookmarks, only: [:index, :create, :destroy]
     end
-    resources :posts, except: [:edit, :update]
-    resources :bookmarks, only: [:index, :create, :destroy]
-    resources :favorites, only: [:create, :destroy]
-    resources :comments, only: [:create, :destroy]
-    resources :watch_lists, only: [:index, :create, :destroy]
+    resources :posts, except: [:edit, :update] do
+      resource :favorites, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy]
+      resources :watch_lists, only: [:index, :create, :destroy]
+    end
   end
 end
