@@ -3,10 +3,11 @@ class CreatePosts < ActiveRecord::Migration[6.1]
     create_table :posts do |t|
 
       t.integer :user_id,     null: false
-      t.integer :place_id,    null: false
-      t.string :title,        null: false
-      t.integer :star,        null: false
-      t.integer :view,        null: false
+      t.integer :place_id
+      t.string  :title,       null: false
+      t.string  :description, null: false
+      t.integer :star
+      t.integer :view
       t.timestamps
     end
   end
