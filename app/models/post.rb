@@ -12,7 +12,7 @@ class Post < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
-  
+
   def save_tags(tags)
     #タグが存在すれば取得する
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
@@ -29,5 +29,9 @@ class Post < ApplicationRecord
       tag = Tag.find_or_create_by(name:new_name)
       self.tags << tag
     end
+  end
+
+  def self.looks(word)
+    where("title LIKE ?", "%#{word}%")
   end
 end
