@@ -17,6 +17,7 @@
           <%= render 'layouts/header' %>
         </div>
         <div class="col-10">
+          <%= flash[:notice] %>
           <%= yield %>
           <%= render 'layouts/footer' %>
         </div>

@@ -11,7 +11,12 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'homes#top'
-    resources :users, only: [:index, :show, :update]
+    resources :users, only: [:index, :show] do
+      member do
+        patch :enable
+        patch :disable
+      end
+    end
     resources :comments, only: [:index, :destroy]
   end
 
@@ -21,7 +26,7 @@ Rails.application.routes.draw do
     get "/about" =>"homes#about"
     resources :users, only: [:show, :edit, :update] do
       collection do
-        patch :withdrawal
+        patch :disable
       end
       resources :bookmarks, only: [:index, :create, :destroy]
     end
@@ -31,7 +36,7 @@ Rails.application.routes.draw do
       resources :watch_lists, only: [:index, :create, :destroy]
     end
   end
-  
+
   devise_scope :user do
     post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
   end

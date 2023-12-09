@@ -1,0 +1,9 @@
+<%= image_tag @user.image, size: "100x100" %>
+<%= @user.email %>
+<%= @user.name %>
+<%= @user.introduction %>
+<% if @user.is_active == true %>
+  <%= link_to "退会させる", disable_admin_user_path(@user.id), method: :patch %>
+  <% else %>
+  <%= link_to "有効化", enable_admin_user_path(@user.id), method: :patch %>
+<% end %>
