@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get "search" =>"searches#search"
+    get "search_tag" => "searches#search_tag"
     get "/about" =>"homes#about"
     resources :users, only: [:show, :edit, :update] do
       collection do

@@ -1,0 +1,10 @@
+<%= @tag.name %>の投稿
+<!--タグ一覧-->
+<% @tag_list.each do |list| %>
+  <%= link_to list.name, search_tag_path(tag_id: list.id) %>
+  <%= "(#{list.posts.count})" %>
+<% end
+
+<% @posts.each do |post| %>
+  <%= post.title %>
+<% end %>

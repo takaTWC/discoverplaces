@@ -1,0 +1,4 @@
+<% @tag_list.each do |list| %>
+  <%= link_to list.name,search_tag_path(tag_id: tag.id) %>
+  <%= "(#{list.posts.count})" %>
+<% end %>
