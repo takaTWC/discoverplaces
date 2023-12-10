@@ -7,3 +7,4 @@
   <%= link_to tag.name, search_tag_path(tag_id: tag.id) %>
 <% end %>
 <%= render "public/shared/favorite", post: @post %>
+<%= render "public/shared/comment", post: @post, comment: @comment %>

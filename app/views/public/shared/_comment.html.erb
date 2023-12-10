@@ -1,0 +1,14 @@
+<div>
+  <p>コメント件数：<%= post.comments.count %></p>
+  <% post.comments.each do |comment| %>
+    <p><%= image_tag comment.user.image, size: "50x50" %></p>
+    <%= comment.user.name %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+  <% end %>
+</div>
+<div>
+  <%= form_with model: [post, comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>

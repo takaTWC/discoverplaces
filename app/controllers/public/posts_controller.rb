@@ -20,6 +20,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @tag_list = @post.tags.pluck(:name).join(',')
     @tags = @post.tags
+    @comment = Comment.new
   end
   
   def index
