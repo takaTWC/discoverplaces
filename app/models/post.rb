@@ -34,4 +34,8 @@ class Post < ApplicationRecord
   def self.looks(word)
     where("title LIKE ?", "%#{word}%")
   end
+
+  def favorites_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
 end

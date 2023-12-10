@@ -6,3 +6,4 @@
 <% @tags.each do |tag| %>
   <%= link_to tag.name, search_tag_path(tag_id: tag.id) %>
 <% end %>
+<%= render "public/shared/favorite", post: @post %>
