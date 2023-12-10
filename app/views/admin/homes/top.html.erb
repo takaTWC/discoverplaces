@@ -25,3 +25,19 @@
   </tbody>
 </table>
 <h4>コメント一覧</h4>
+<table class = "table">
+  <thead>
+    <th>コメント</th>
+    <th>投稿者</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.comment %></td>
+        <td><%= comment.user.name %></td>
+        <td><%= link_to "削除", admin_comment_path(comment), method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
