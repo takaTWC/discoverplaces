@@ -1,0 +1,11 @@
+<% if post.listed_by?(current_user) %>
+  <%= link_to post_watch_lists_path(post), method: :delete do %>
+    Clip
+    <%= post.watch_lists.count %> 登録
+  <% end %>
+<% else %>
+  <%= link_to post_watch_lists_path(post), method: :post do %>
+    clip
+    <%= post.watch_lists.count %> 登録
+  <% end %>
+<% end %>

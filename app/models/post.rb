@@ -35,7 +35,11 @@ class Post < ApplicationRecord
     where("title LIKE ?", "%#{word}%")
   end
 
-  def favorites_by?(user)
+  def favorited_by?(user)
     favorites.exists?(user_id: user.id)
+  end
+
+  def listed_by?(user)
+    watch_lists.exists?(user_id: user.id)
   end
 end
