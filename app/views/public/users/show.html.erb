@@ -1,5 +1,7 @@
+<h2>マイページ</h2>
 <%= image_tag @user.image, size: "100x100" %>
 <%= @user.email %>
 <%= @user.name %>
 <%= @user.introduction %>
 <%= link_to "会員情報変更", edit_user_path(@user) %>
+<%= link_to "クリップ一覧", watch_lists_user_path(@user) %>

@@ -42,4 +42,12 @@ class Post < ApplicationRecord
   def listed_by?(user)
     watch_lists.exists?(user_id: user.id)
   end
+
+  def self.watch_lists(user, page, per_page)
+    includes(:watch_lists)
+      .where(watch_lists: {user_id: user.id})
+      .order(created_at: :desc)
+      .page(page)
+      .per(per_page)
+  end
 end
