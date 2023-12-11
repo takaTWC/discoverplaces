@@ -10,7 +10,12 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
-  has_many :follows, through: :follow_relations
+  #フォロー時相互関係
+  has_many :followers, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :followeds, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  #一覧
+  has_many :following_users, through: :followers, source: :followed
+  has_many :follower_users, through: :followeds, source: :follower
 
   GUEST_USER_EMAIL = "guest@example.com"
 
@@ -22,5 +27,20 @@ class User < ApplicationRecord
       file_path = Rails.root.join('app/assets/images/guest_user.png')
       user.image.attach(io: File.open(file_path), filename: 'default-image.png', content_type: 'image/png')
     end
+  end
+  
+  #フォローする時
+  def follow(user_id)
+    followers.create(followed_id: user_id)
+  end
+  
+  #フォローを外すとき
+  def unfollow(user_id)
+    followers.find_by(followed_id: user_id).destroy
+  end
+  
+  #フォロー時にtrue
+  def following?(user)
+    following_users.include?(user)
   end
 end

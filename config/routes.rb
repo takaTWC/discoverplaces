@@ -26,13 +26,15 @@ Rails.application.routes.draw do
     get "search_tag" => "searches#search_tag"
     get "/about" =>"homes#about"
     resources :users, only: [:show, :edit, :update] do
+      resources :bookmarks, only: [:index, :create, :destroy]
       collection do
         patch :disable
       end
       member do
         get :bookmarks
+        get :follows, :followers
       end
-      resources :bookmarks, only: [:index, :create, :destroy]
+      resource :relationships, only: [:create, :destroy]
     end
     resources :posts, except: [:edit, :update] do
       resource :favorites, only: [:create, :destroy]

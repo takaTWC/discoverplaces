@@ -74,18 +74,6 @@ ActiveRecord::Schema.define(version: 2023_12_07_152453) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "follow_relations", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "follow_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "follows", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "places", force: :cascade do |t|
     t.string "address", null: false
     t.float "latitude", null: false
@@ -101,6 +89,13 @@ ActiveRecord::Schema.define(version: 2023_12_07_152453) do
     t.string "description", null: false
     t.integer "star"
     t.integer "view"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id", null: false
+    t.integer "followed_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
