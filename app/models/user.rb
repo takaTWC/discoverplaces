@@ -9,8 +9,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :watch_lists, dependent: :destroy
-  has_many :bookmarks, through: :bookmark_relations
+  has_many :bookmarks, dependent: :destroy
+  has_many :follows, through: :follow_relations
 
   GUEST_USER_EMAIL = "guest@example.com"
 

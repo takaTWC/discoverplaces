@@ -16,8 +16,8 @@ class Public::UsersController < ApplicationController
     redirect_to user_path(user)
   end
 
-  def watch_lists
-    @watch_lists = Post.watch_lists(current_user, params[:page], 10)
+  def bookmarks
+    @bookmarks = Post.bookmarks(current_user, params[:page], 10)
   end
 
   private

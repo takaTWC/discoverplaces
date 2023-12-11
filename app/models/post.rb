@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :place, optional: true
   has_many :favorites, dependent: :destroy
-  has_many :watch_lists, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :tag_relations
   has_many :tags, through: :tag_relations, dependent: :destroy
@@ -39,13 +39,13 @@ class Post < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
-  def listed_by?(user)
-    watch_lists.exists?(user_id: user.id)
+  def marked_by?(user)
+    bookmarks.exists?(user_id: user.id)
   end
 
-  def self.watch_lists(user, page, per_page)
-    includes(:watch_lists)
-      .where(watch_lists: {user_id: user.id})
+  def self.bookmarks(user, page, per_page)
+    includes(:bookmarks)
+      .where(bookmarks: {user_id: user.id})
       .order(created_at: :desc)
       .page(page)
       .per(per_page)

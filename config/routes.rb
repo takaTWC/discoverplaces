@@ -30,14 +30,14 @@ Rails.application.routes.draw do
         patch :disable
       end
       member do
-        get :watch_lists
+        get :bookmarks
       end
       resources :bookmarks, only: [:index, :create, :destroy]
     end
     resources :posts, except: [:edit, :update] do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
-      resource :watch_lists, only: [:index, :create, :destroy]
+      resources :bookmarks, only: [:index, :create, :destroy]
     end
   end
 
