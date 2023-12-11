@@ -17,7 +17,7 @@ class Public::UsersController < ApplicationController
   end
 
   def watch_lists
-    @watch_lists = Post.watch_lists(current_user, params[:page], 12)
+    @watch_lists = Post.watch_lists(current_user, params[:page], 10)
   end
 
   private
