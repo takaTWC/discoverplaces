@@ -21,13 +21,16 @@ class Public::PostsController < ApplicationController
     @tag_list = @post.tags.pluck(:name).join(',')
     @tags = @post.tags
     @comment = Comment.new
+    unless ViewCount.where(created_at: Time.zone.now.all_day).find_by(user_id: current_user.id, post_id: @post.id)
+      current_user.view_counts.create(post_id: @post.id)
+    end
   end
-  
+
   def index
     @posts = Post.all
     @tag_list = Tag.all
   end
-  
+
   private
   def post_params
     params.require(:post).permit(:title, :description, :image)

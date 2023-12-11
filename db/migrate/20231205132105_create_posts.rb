@@ -6,8 +6,6 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.integer :place_id
       t.string  :title,       null: false
       t.string  :description, null: false
-      t.integer :star
-      t.integer :view
       t.timestamps
     end
   end

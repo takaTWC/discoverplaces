@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  has_many :view_counts, dependent: :destroy
   #フォロー時相互関係
   has_many :followers, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followeds, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
@@ -28,17 +29,17 @@ class User < ApplicationRecord
       user.image.attach(io: File.open(file_path), filename: 'default-image.png', content_type: 'image/png')
     end
   end
-  
+
   #フォローする時
   def follow(user_id)
     followers.create(followed_id: user_id)
   end
-  
+
   #フォローを外すとき
   def unfollow(user_id)
     followers.find_by(followed_id: user_id).destroy
   end
-  
+
   #フォロー時にtrue
   def following?(user)
     following_users.include?(user)

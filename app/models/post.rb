@@ -8,6 +8,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :tag_relations
   has_many :tags, through: :tag_relations, dependent: :destroy
+  has_many :view_counts, dependent: :destroy
 
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
