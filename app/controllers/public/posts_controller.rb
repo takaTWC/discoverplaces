@@ -11,7 +11,6 @@ class Public::PostsController < ApplicationController
       post.save_tags(tag_list)
       redirect_to post_path(post)
     else
-      logger.debug @post.errors.full_messages
       render :new
     end
   end
@@ -21,9 +20,7 @@ class Public::PostsController < ApplicationController
     @tag_list = @post.tags.pluck(:name).join(',')
     @tags = @post.tags
     @comment = Comment.new
-    unless ViewCount.where(created_at: Time.zone.now.all_day).find_by(user_id: current_user.id, post_id: @post.id)
-      current_user.view_counts.create(post_id: @post.id)
-    end
+    @post.view_count_for_user(current_user)
   end
 
   def index

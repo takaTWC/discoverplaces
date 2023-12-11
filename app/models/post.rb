@@ -51,4 +51,11 @@ class Post < ApplicationRecord
       .page(page)
       .per(per_page)
   end
+
+  #閲覧数
+  def view_count_for_user(current_user)
+    unless ViewCount.where(created_at: Time.zone.now.all_day).find_by(user_id: current_user.id, post_id: id)
+      current_user.view_counts.create(post_id: id)
+    end
+  end
 end
