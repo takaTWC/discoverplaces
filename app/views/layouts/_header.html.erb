@@ -1,4 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #F76c6c;">
+  <%= link_to "Home", root_path %>
   <% if user_signed_in? %>
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -15,17 +16,17 @@
   <% else %>
     <ul class="navbar-nav">
       <li class="nav-item">
-        <%= link_to about_path, class: "nav-link text-dark" do %>
+        <%= link_to about_path, class: "nav-link text-light" do %>
           <i class="fa-solid fa-tag"></i> About
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to new_user_registration_path, class: "nav-link text-dark" do %>
+        <%= link_to new_user_registration_path, class: "nav-link text-light" do %>
           <i class="fa-solid fa-user-plus"></i> Sign Up
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to new_user_session_path, class: "nav-link text-dark" do %>
+        <%= link_to new_user_session_path, class: "nav-link text-light" do %>
           <i class="fa-solid fa-right-to-bracket"></i> Log In
         <% end %>
       </li>
