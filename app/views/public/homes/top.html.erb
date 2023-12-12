@@ -8,14 +8,17 @@
 <h2>いいねランキング</h2>
 <% @post_favorite_ranks.each.with_index(1) do |post, i| %>
   第<%= i %>位
-  <%= link_to 
-  <%= post.title %>
+  <%= link_to post_path(post) do %>
+    <%= post.title %>
+  <% end %>
   <%= post.favorites.count %>いいね
 <% end %>
 
 <h2>閲覧数ランキング</h2>
 <% @post_view_count_ranks.each.with_index(1) do |post, i| %>
   第<%= i %>位
-  <%= post.title %>
+  <%= link_to post_path(post) do %>
+    <%= post.title %>
+  <% end %>
   <%= post.view_counts.count %>回
 <% end %>
