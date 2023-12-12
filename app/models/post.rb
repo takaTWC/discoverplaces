@@ -58,4 +58,18 @@ class Post < ApplicationRecord
       current_user.view_counts.create(post_id: id)
     end
   end
+
+  #いいねランキング
+  def self.post_favorite_ranks
+    joins(:favorites)
+      .group(:id)
+      .order('COUNT(favorites.post_id) DESC')
+  end
+
+  #閲覧数ランキング
+  def self.post_view_counts_ranks
+    joins(:view_counts)
+      .group(:id)
+      .order('COUNT(view_counts.post_id) DESC')
+  end
 end

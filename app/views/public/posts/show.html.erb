@@ -7,6 +7,6 @@
   <%= link_to tag.name, search_tag_path(tag_id: tag.id) %>
 <% end %>
 <%= render "public/shared/favorite", post: @post %>
-<%= render "public/shared/comment", post: @post, comment: @comment %>
 <%= render "public/shared/bookmark", post: @post %>
+<%= render "public/shared/comment", post: @post, comment: @comment %>
 閲覧数：<%= @post.view_counts.count %>

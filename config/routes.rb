@@ -39,7 +39,7 @@ Rails.application.routes.draw do
     resources :posts, except: [:edit, :update] do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
-      resources :bookmarks, only: [:index, :create, :destroy]
+      resource :bookmarks, only: [:index, :create, :destroy]
     end
   end
 

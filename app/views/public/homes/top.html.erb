@@ -4,3 +4,18 @@
 <%= link_to "投稿してみる", new_post_path %>
 
 <%= render 'public/searches/search' %>
+
+<h2>いいねランキング</h2>
+<% @post_favorite_ranks.each.with_index(1) do |post, i| %>
+  第<%= i %>位
+  <%= link_to 
+  <%= post.title %>
+  <%= post.favorites.count %>いいね
+<% end %>
+
+<h2>閲覧数ランキング</h2>
+<% @post_view_count_ranks.each.with_index(1) do |post, i| %>
+  第<%= i %>位
+  <%= post.title %>
+  <%= post.view_counts.count %>回
+<% end %>
