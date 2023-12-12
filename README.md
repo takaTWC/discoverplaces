@@ -35,4 +35,4 @@
 
 ## ER図
 
-![ER Diagram](https://github.com/takaTWC/discoverplaces/blob/main/ER.drawio.svg)
+![ER Diagram](https://github.com/takaTWC/discoverplaces/blob/develop/ER.drawio.svg)
