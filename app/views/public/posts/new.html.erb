@@ -94,7 +94,7 @@
    function initMap() {
     geocoder = new google.maps.Geocoder();
     navigator.geolocation.getCurrentPosition(function (position) {
-      // 初期表示位置
+      // 初期表示位置(東京駅)
       let latLng = {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
@@ -104,7 +104,7 @@
         center:  {lat: 35.68123620000001, lng: 139.7671248},
       });
 
-      // マーカーを追加
+      // マーカーを追加(東京駅)
       let marker = new google.maps.Marker({
         position:  {lat: 35.68123620000001, lng: 139.7671248},
         map: map,

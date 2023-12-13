@@ -11,10 +11,6 @@ class Post < ApplicationRecord
   has_many :view_counts, dependent: :destroy
   accepts_nested_attributes_for :place
 
-  def favorited_by?(user)
-    favorites.exists?(user_id: user.id)
-  end
-
   def save_tags(tags)
     #タグが存在すれば取得する
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
@@ -45,6 +41,7 @@ class Post < ApplicationRecord
     bookmarks.exists?(user_id: user.id)
   end
 
+  #ブックマーク一覧表示
   def self.bookmarks(user, page, per_page)
     includes(:bookmarks)
       .where(bookmarks: {user_id: user.id})
