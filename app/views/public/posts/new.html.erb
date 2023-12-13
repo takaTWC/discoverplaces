@@ -9,6 +9,11 @@
   <%= f.file_field :image, accept: "image/*" %>
   タグ(,で複数登録できます)
   <%= f.text_field :name, value: @tag_list, placeholder: "タグ" %>
+  <%= f.fields_for :place do |place_fields| %>
+    <%= place_fields.text_field :address, hidden: true, id: 'address_field', readonly: true %>
+    <%= place_fields.text_field :latitude, hidden: true, id: 'latitude_field', readonly: true %>
+    <%= place_fields.text_field :longitude, hidden: true, id: 'longitude_field', readonly: true %>
+  <% end %>
   <%= f.submit "投稿" %>
 <% end %>
 
@@ -20,36 +25,118 @@
 <style>#map {height: 600px; width: 100%;}</style>
 
 <script>
-  let map
-  function initMap(){
-    geocoder = new google.maps.Geocoder()
+  let map;
+  let geocoder;
+  let address;
+  let latitude;
+  let longitude;
+  let markers = [];
 
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 35.68123620000001, lng:139.7671248},
-      zoom: 15,
-    });
+  function addMarker(location) {
+    // 既存のマーカーを地図から削除する
+    removeMarkers();
 
-    marker = new google.maps.Marker({
-      position:  {lat: 35.68123620000001, lng:139.7671248},
-      map: map
+    // 指定された位置に新しいマーカーを作成し、markers配列に追加する
+    let marker = new google.maps.Marker({
+      position: location,
+      map: map,
     });
-  }
-  let geocoder
-  const display = document.getElementById('display')
-  function codeAddress(){
-    let inputAddress = document.getElementById('address').value;
-    geocoder.geocode( { 'address': inputAddress}, function(results, status) {
-      if (status == 'OK') {
-        map.setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location
-        });
-        display.textContent = "検索結果：" + results[ 0 ].geometry.location
-      } else {
-        alert('該当する結果がありませんでした：' + status);
+    markers.push(marker);
+
+    // マップのカメラを新しいマーカーの位置に移動する
+    map.setCenter(location);
+
+    // マーカーの位置を逆ジオコーディングして、HTMLタグに現在の住所を表示する
+    geocoder.geocode({ location: location }, function (results, status) {
+      if (status === "OK") {
+        if (results[0]) {
+          // 逆ジオコーディング結果から現在の住所を取得
+          let currentAddress = results[0].formatted_address;
+          // HTMLタグに現在の住所を出力
+          document.getElementById("address_field").innerHTML = currentAddress;
+        }
       }
     });
   }
+
+  function removeMarkers() {
+    // マップ上のすべてのマーカーを削除し、markers配列をクリアする
+    for (let i = 0; i < markers.length; i++) {
+      markers[i].setMap(null);
+    }
+    markers = [];
+  }
+
+
+  function codeAddress() {
+    let inputAddress = document.getElementById("address").value;
+
+    geocoder.geocode({ address: inputAddress }, function (results, status) {
+      if (status == "OK") {
+        // Add a marker at the input address and display its address and coordinates
+        let currentAddress = results[0].formatted_address;
+        let location = results[0].geometry.location;
+        addMarker(location);
+
+        // 住所と座標を取得してHTMLタグに表示
+        address = currentAddress;
+        latitude = location.lat();
+        longitude = location.lng();
+        document.getElementById("address_field").value = currentAddress;
+        document.getElementById("latitude_field").value = location.lat();
+        document.getElementById("longitude_field").value = location.lng();
+      } else {
+        alert("見つかりませんでした。");
+      }
+    });
+  }
+
+   function initMap() {
+    geocoder = new google.maps.Geocoder();
+    navigator.geolocation.getCurrentPosition(function (position) {
+      // 初期表示位置
+      let latLng = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
+      map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 15,
+        center:  {lat: 35.68123620000001, lng: 139.7671248},
+      });
+
+      // マーカーを追加
+      let marker = new google.maps.Marker({
+        position:  {lat: 35.68123620000001, lng: 139.7671248},
+        map: map,
+      });
+      markers.push(marker);
+
+      // 逆ジオコーディングを行い、住所や座標を取得してHTMLタグに表示
+      geocoder.geocode({ location: latLng }, function (results, status) {
+        if (status === "OK") {
+          if (results[0]) {
+            let currentAddress = results[0].formatted_address;
+
+            address = currentAddress;
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+
+            // HTMLタグに表示
+            document.getElementById("address_field").value = currentAddress;
+            document.getElementById("latitude_field").value = position.coords.latitude;
+            document.getElementById("longitude_field").value = position.coords.longitude;
+          }
+        }
+      });
+    });
+  };
+
+  var script = document.createElement('script');
+  script.src = "https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initMap";
+  script.async = true;
+
+  // initMapをwindowオブジェクトにアタッチ
+  window.initMap = initMap;
+  // 'head'に'script'要素を追加
+  document.head.appendChild(script);
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initMap" async defer></script>

@@ -9,6 +9,7 @@ class Post < ApplicationRecord
   has_many :tag_relations
   has_many :tags, through: :tag_relations, dependent: :destroy
   has_many :view_counts, dependent: :destroy
+  accepts_nested_attributes_for :place
 
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)

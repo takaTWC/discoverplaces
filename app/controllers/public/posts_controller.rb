@@ -1,6 +1,7 @@
 class Public::PostsController < ApplicationController
   def new
     @post = Post.new
+    @post.build_place
   end
 
   def create
@@ -30,6 +31,6 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :description, :image)
+    params.require(:post).permit(:title, :description, :image, :latitude, :longitude, place_attributes: [:address, :latitude, :longitude])
   end
 end
