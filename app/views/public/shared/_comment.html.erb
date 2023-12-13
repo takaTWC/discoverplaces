@@ -1,5 +1,5 @@
 <div>
-  <p><i class="fa-regular fa-comment"></i>：<%= post.comments.count %>件</p>
+  <p><i class="fa-regular fa-comment"></i>コメント数：<%= post.comments.count %>件</p>
   <% post.comments.each do |comment| %>
     <%= image_tag comment.user.image, size: "50x50" %>
     <%= comment.user.name %>
