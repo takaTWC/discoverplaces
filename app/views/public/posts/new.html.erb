@@ -91,45 +91,42 @@
     });
   }
 
-   function initMap() {
+  function initMap() {
     geocoder = new google.maps.Geocoder();
-    navigator.geolocation.getCurrentPosition(function (position) {
-      // 初期表示位置(東京駅)
-      let latLng = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      };
-      map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 15,
-        center:  {lat: 35.68123620000001, lng: 139.7671248},
-      });
 
-      // マーカーを追加(東京駅)
-      let marker = new google.maps.Marker({
-        position:  {lat: 35.68123620000001, lng: 139.7671248},
-        map: map,
-      });
-      markers.push(marker);
+    // 初期表示位置(東京駅)
+    let initialLatLng = { lat: 35.68123620000001, lng: 139.7671248 };
 
-      // 逆ジオコーディングを行い、住所や座標を取得してHTMLタグに表示
-      geocoder.geocode({ location: latLng }, function (results, status) {
-        if (status === "OK") {
-          if (results[0]) {
-            let currentAddress = results[0].formatted_address;
-
-            address = currentAddress;
-            latitude = position.coords.latitude;
-            longitude = position.coords.longitude;
-
-            // HTMLタグに表示
-            document.getElementById("address_field").value = currentAddress;
-            document.getElementById("latitude_field").value = position.coords.latitude;
-            document.getElementById("longitude_field").value = position.coords.longitude;
-          }
-        }
-      });
+    map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 15,
+      center: initialLatLng,
     });
-  };
+
+    // マーカーを追加(東京駅)
+    let marker = new google.maps.Marker({
+      position: initialLatLng,
+      map: map,
+    });
+    markers.push(marker);
+
+    // 逆ジオコーディングを行い、住所や座標を取得してHTMLタグに表示
+    geocoder.geocode({ location: initialLatLng }, function (results, status) {
+      if (status === "OK") {
+        if (results[0]) {
+          let currentAddress = results[0].formatted_address;
+
+          address = currentAddress;
+          latitude = initialLatLng.lat;
+          longitude = initialLatLng.lng;
+
+          // HTMLタグに表示
+          document.getElementById("address_field").value = currentAddress;
+          document.getElementById("latitude_field").value = initialLatLng.lat;
+          document.getElementById("longitude_field").value = initialLatLng.lng;
+        }
+      }
+    });
+  }
 
   var script = document.createElement('script');
   script.src = "https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initMap";
