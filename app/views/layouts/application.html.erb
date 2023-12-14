@@ -13,7 +13,9 @@
   <body>
     <%= render 'layouts/sidebar' %>
     <section class="home-section">
-      <%= flash[:notice] %>
+      <div class="text-center">
+        <%= flash[:notice] %>
+      </div>
       <%= yield %>
       <%= render 'layouts/footer' %>
     </section>

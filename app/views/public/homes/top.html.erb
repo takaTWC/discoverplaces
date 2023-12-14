@@ -1,24 +1,40 @@
-<div class="image" style = "background-image: url('assets/top.jpg');">
-  <%= link_to "初めての方へ", about_path %>
-  <%= link_to "試しに使ってみる", users_guest_sign_in_path, method: :post %>
-  <%= link_to "投稿してみる", new_post_path %>
+<div class="container">
+  <div class="image" style = "background-image: url('assets/top.jpg');">
+    <% if user_signed_in? %>
+      <div class="row flex justify-content-center">
+        <h1 class="text-white">お気に入りの場所を投稿しませんか</h2>
+      </div>
+      <div class="row flex justify-content-center">
+        <%= link_to "投稿してみる", new_post_path, class: "btn btn-primary" %>
+      </div>
+    <% else %>
+      <div class="row flex justify-content-center">
+        <h1 class="text-white">DiscoverPlacesへようこそ！</h2>
+      </div>
+      <div class="row flex justify-content-center">
+        <%= link_to "初めての方へ", about_path, class: "btn btn-success" %>
+        <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary" %>
+        <%= link_to "試しに使ってみる", users_guest_sign_in_path, method: :post, class: "btn btn-warning" %>
+      </div>
+    <% end %>
+  </div>
+
+
+  <h2>いいねランキング</h2>
+  <% @post_favorite_ranks.each.with_index(1) do |post, i| %>
+    第<%= i %>位
+    <%= link_to post_path(post) do %>
+      <%= post.title %>
+    <% end %>
+    <%= post.favorites.count %>いいね
+  <% end %>
+
+  <h2>閲覧数ランキング</h2>
+  <% @post_view_count_ranks.each.with_index(1) do |post, i| %>
+    第<%= i %>位
+    <%= link_to post_path(post) do %>
+      <%= post.title %>
+    <% end %>
+    <%= post.view_counts.count %>回
+  <% end %>
 </div>
-
-
-<h2>いいねランキング</h2>
-<% @post_favorite_ranks.each.with_index(1) do |post, i| %>
-  第<%= i %>位
-  <%= link_to post_path(post) do %>
-    <%= post.title %>
-  <% end %>
-  <%= post.favorites.count %>いいね
-<% end %>
-
-<h2>閲覧数ランキング</h2>
-<% @post_view_count_ranks.each.with_index(1) do |post, i| %>
-  第<%= i %>位
-  <%= link_to post_path(post) do %>
-    <%= post.title %>
-  <% end %>
-  <%= post.view_counts.count %>回
-<% end %>
