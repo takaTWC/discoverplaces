@@ -1,0 +1,77 @@
+<div class="sidebar">
+  <div class="logo_details">
+    <%= link_to root_path do %>
+      <div class="logo_name">Discover Places</div>
+    <% end %>
+    <i class="fa-solid fa-bars" id="btn"></i>
+  </div>
+  <ul class="nav-list">
+    <% if user_signed_in? %>
+      <li>
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <span class="tooltip">Search</span>
+        <%= form_with url: search_path, local: true, method: :get do |f| %>
+          <%= f.text_field :word, placeholder: "Search" %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to user_path(current_user) do %>
+          <i class="fa-regular fa-user"></i>
+          <span class="link_name">My Page</span>
+        <% end %>
+        <span class="tooltip">My Page</span>
+      </li>
+      <li>
+        <%= link_to posts_path(current_user) do %>
+          <i class="fa-solid fa-signs-post"></i>
+          <span class="link_name">Post</span>
+        <% end %>
+        <span class="tooltip">Post</span>
+      </li>
+      <li>
+        <%= link_to user_bookmarks_path(current_user) do %>
+          <i class="fa-solid fa-clipboard"></i>
+          <span class="link_name">Bookmarks</span>
+        <% end %>
+        <span class="tooltip">Bookmarks</span>
+      </li>
+      <li class="profile">
+        <div class="profile_details">
+          <%= image_tag current_user.image %>
+          <div class="profile_content">
+            <div class="name">
+              <%= current_user.name %>
+            </div>
+          </div>
+        </div>
+        <div class="log_out">
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fa-solid fa-right-from-bracket"></i>
+          <% end %>
+        </div>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to about_path do %>
+          <i class="fa-regular fa-address-card"></i>
+          <span class="link_name">About</span>
+        <% end %>
+        <span class="tooltip">About</span>
+      </li>
+      <li>
+        <%= link_to new_user_registration_path do %>
+          <i class="fa-solid fa-user-plus"></i>
+          <span class="link_name">Sign In</span>
+        <% end %>
+        <span class="tooltip">Sign In</span>
+      </li>
+      <li>
+        <%= link_to new_user_session_path do %>
+          <i class="fa-solid fa-right-to-bracket"></i>
+          <span class="link_name">Log In</span>
+        <% end %>
+        <span class="tooltip">Log In</span>
+      </li>
+    <% end %>
+  </ul>
+</div>

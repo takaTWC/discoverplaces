@@ -1,9 +1,9 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
-<%= link_to "試しに使ってみる", users_guest_sign_in_path, method: :post %>
-<%= link_to "投稿してみる", new_post_path %>
+<div class="image" style = "background-image: url('assets/top.jpg');">
+  <%= link_to "初めての方へ", about_path %>
+  <%= link_to "試しに使ってみる", users_guest_sign_in_path, method: :post %>
+  <%= link_to "投稿してみる", new_post_path %>
+</div>
 
-<%= render 'public/searches/search' %>
 
 <h2>いいねランキング</h2>
 <% @post_favorite_ranks.each.with_index(1) do |post, i| %>
