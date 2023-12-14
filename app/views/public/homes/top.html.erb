@@ -13,12 +13,11 @@
       </div>
       <div class="row flex justify-content-center">
         <%= link_to "初めての方へ", about_path, class: "btn btn-success" %>
-        <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary" %>
+        <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary ml-2 mr-2" %>
         <%= link_to "試しに使ってみる", users_guest_sign_in_path, method: :post, class: "btn btn-warning" %>
       </div>
     <% end %>
   </div>
-
 
   <h2>いいねランキング</h2>
   <% @post_favorite_ranks.each.with_index(1) do |post, i| %>

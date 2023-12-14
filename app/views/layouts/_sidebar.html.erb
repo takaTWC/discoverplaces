@@ -1,8 +1,6 @@
 <div class="sidebar">
   <div class="logo_details">
-    <%= link_to root_path do %>
-      <div class="logo_name">Discover Places</div>
-    <% end %>
+    <div class="logo_name">Discover Places</div>
     <i class="fa-solid fa-bars" id="btn"></i>
   </div>
   <ul class="nav-list">
@@ -13,6 +11,13 @@
         <%= form_with url: search_path, local: true, method: :get do |f| %>
           <%= f.text_field :word, placeholder: "Search" %>
         <% end %>
+      </li>
+      <li>
+        <%= link_to root_path do %>
+          <i class="fa-solid fa-house"></i>
+          <span class="link_name">Home</span>
+        <% end %>
+        <span class="tooltip">Home</span>
       </li>
       <li>
         <%= link_to user_path(current_user) do %>
@@ -51,6 +56,13 @@
         </div>
       </li>
     <% else %>
+      <li>
+        <%= link_to root_path do %>
+          <i class="fa-solid fa-house"></i>
+          <span class="link_name">Home</span>
+        <% end %>
+        <span class="tooltip">Home</span>
+      </li>
       <li>
         <%= link_to about_path do %>
           <i class="fa-regular fa-address-card"></i>
