@@ -297,8 +297,15 @@ body{
   width: calc(100% - 250px);
 }
 
-.image{
-  position: relative;
-  background-size: cover;
-  height: 750px;
+/* .fade-in クラス: 初期状態で透明度を0に設定し、フェードイン効果を適用するための基本スタイル。
+   透明度は0（完全に透明）で、1秒かけてフェードインするように設定しています。 */
+.fade-in {
+    opacity: 0; /* 完全に透明 */
+    transition: opacity 1s ease-in; /* 透明度が変わる際の遷移効果（1秒かけてゆっくりと変化） */
+}
+
+/* .visible クラス: このクラスが追加されると、要素の透明度が1（完全に不透明）になります。
+   JavaScriptによってこのクラスが追加または削除されることで、フェードイン・フェードアウトの効果が実現されます。 */
+.visible {
+    opacity: 1; /* 完全に不透明 */
 }
