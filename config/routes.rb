@@ -27,6 +27,8 @@ Rails.application.routes.draw do
     get "/about" =>"homes#about"
     resources :users, only: [:show, :edit, :update] do
       resources :bookmarks, only: [:index, :create, :destroy]
+      resources :posts, only: [:index]
+      resource :relationships, only: [:create, :destroy]
       collection do
         patch :disable
       end
@@ -34,12 +36,11 @@ Rails.application.routes.draw do
         get :bookmarks
         get :follows, :followers
       end
-      resource :relationships, only: [:create, :destroy]
     end
     resources :posts, except: [:edit, :update] do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
-      resource :bookmarks, only: [:index, :create, :destroy]
+      resource :bookmarks, only: [:create, :destroy]
     end
   end
 
