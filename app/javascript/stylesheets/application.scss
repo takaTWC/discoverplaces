@@ -309,3 +309,11 @@ body{
 .visible {
     opacity: 1; /* 完全に不透明 */
 }
+
+.card:hover {
+    background-color: #f8f9fa;
+}
+
+.card a:hover {
+    text-decoration: none;
+}

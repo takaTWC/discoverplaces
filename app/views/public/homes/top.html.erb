@@ -22,42 +22,46 @@
     </div>
   </div>
 
-  <h2>いいねランキング</h2>
+  <h2 class="mt-4 mb-4">いいねランキング</h2>
   <div class="card-group">
     <% @post_favorite_ranks.first(5).each.with_index(1) do |post, i| %>
       <div class="card">
-        <div class="card-body">
-          <h4>第<%= i %>位</h4>
-          <%= image_tag post.image, size:"100x100" %>
-          <h5 class="card-title"><%= post.title %></h5>
-          <p class="card-text"><%= post.description %></p>
-          <p class="card-text"><small class="text-muted"><%= post.created_at.strftime('%Y/%m/%d') %></small></p>
-          <p class="card-text">
-            <i class="fa-regular fa-heart"></i> <%= post.favorites.count %>
-            <i class="fa-regular fa-comment"></i> <%= post.comments.count %>
-            <i class="fa-regular fa-eye"></i> <%= post.view_counts.count %>
-          </p>
-        </div>
+        <%= link_to post_path(post) do %>
+          <div class="card-body">
+            <h4>第<%= i %>位</h4>
+            <%= image_tag post.image, size:"100x100" %>
+            <h5 class="card-title"><%= post.title %></h5>
+            <p class="card-text"><%= post.description %></p>
+            <p class="card-text"><small class="text-muted"><%= post.created_at.strftime('%Y/%m/%d') %></small></p>
+            <p class="card-text">
+              <i class="fa-regular fa-heart"></i> <%= post.favorites.count %>
+              <i class="fa-regular fa-comment"></i> <%= post.comments.count %>
+              <i class="fa-regular fa-eye"></i> <%= post.view_counts.count %>
+            </p>
+          </div>
+        <% end %>
       </div>
     <% end %>
   </div>
 
-  <h2>閲覧数ランキング</h2>
+  <h2 class="mt-4 mb-4">閲覧数ランキング</h2>
   <div class="card-group">
     <% @post_view_count_ranks.each.with_index(1) do |post, i| %>
       <div class="card">
-        <div class="card-body">
-          <h4>第<%= i %>位</h4>
-          <%= image_tag post.image, size:"100x100" %>
-          <h5 class="card-title"><%= post.title %></h5>
-          <p class="card-text"><%= post.description %></p>
-          <p class="card-text"><small class="text-muted"><%= post.created_at.strftime('%Y/%m/%d') %></small></p>
-          <p class="card-text">
-            <i class="fa-regular fa-heart"></i> <%= post.favorites.count %>
-            <i class="fa-regular fa-comment"></i> <%= post.comments.count %>
-            <i class="fa-regular fa-eye"></i> <%= post.view_counts.count %>
-          </p>
-        </div>
+        <%= link_to post_path(post) do %>
+          <div class="card-body">
+            <h4>第<%= i %>位</h4>
+            <%= image_tag post.image, size:"100x100" %>
+            <h5 class="card-title"><%= post.title %></h5>
+            <p class="card-text"><%= post.description %></p>
+            <p class="card-text"><small class="text-muted"><%= post.created_at.strftime('%Y/%m/%d') %></small></p>
+            <p class="card-text">
+              <i class="fa-regular fa-heart"></i> <%= post.favorites.count %>
+              <i class="fa-regular fa-comment"></i> <%= post.comments.count %>
+              <i class="fa-regular fa-eye"></i> <%= post.view_counts.count %>
+            </p>
+          </div>
+        <% end %>
       </div>
     <% end %>
   </div>
