@@ -5,7 +5,7 @@
     </div>
     <div class="col-md-4 col-sm-6 text-end">
       <% if current_user == @user && @user.email != "guest@example.com" %>
-        <%= link_to "会員情報変更", edit_user_path(@user), class: "btn btn-success" %>
+        <%= link_to "会員情報変更", edit_user_path(@user), class: "btn btn-success mt-4 mb-4" %>
       <% end %>
     </div>
   </div>
@@ -69,21 +69,24 @@
         <%= link_to "more", user_posts_path(@user) %>
       </div>
     </div>
-    <h4 class="mt-4 mb-4">クリップ一覧</h4>
-    <% @bookmarks.each do |post| %>
-      <%= render "public/shared/posts", post: post %>
+    <!--自身のページにのみ表示-->
+    <% if current_user == @user %>
+      <h4 class="mt-4 mb-4">クリップ一覧</h4>
+      <% @bookmarks.each do |post| %>
+        <%= render "public/shared/posts", post: post %>
+      <% end %>
+      <div class="row">
+        <div class="col text-right">
+          <%= link_to "more", bookmarks_user_path(@user) %>
+        </div>
+      </div>
+      <h4 class="mt-4 mb-4">コメント一覧</h4>
+      <%= render "public/shared/comment_view", comments: @comments %>
+      <div class="row">
+        <div class="col text-right">
+          <%= link_to "more", comments_user_path(@user) %>
+        </div>
+      </div>
     <% end %>
-    <div class="row">
-      <div class="col text-right">
-        <%= link_to "more", bookmarks_user_path(@user) %>
-      </div>
-    </div>
-    <h4 class="mt-4 mb-4">コメント一覧</h4>
-    <%= render "public/shared/comment_view", comments: @comments %>
-    <div class="row">
-      <div class="col text-right">
-        <%= link_to "more", comments_user_path(@user) %>
-      </div>
-    </div>
   </div>
 </div>
