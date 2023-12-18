@@ -15,6 +15,11 @@ class Public::CommentsController < ApplicationController
     redirect_to request.referer
   end
 
+  def index
+    user = current_user
+    @comments = user.comments
+  end
+
   private
   def comment_params
     params.require(:comment).permit(:comment)

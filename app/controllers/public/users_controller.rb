@@ -6,6 +6,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     bookmark = Bookmark.where(user_id: @user.id).order(created_at: :desc).limit(5).pluck(:post_id)
     @bookmarks = Post.find(bookmark)
+    @comments = @user.comments.order(created_at: :desc).limit(5)
     @following_users = @user.following_users
     @follower_users = @user.follower_users
   end

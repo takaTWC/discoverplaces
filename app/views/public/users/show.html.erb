@@ -79,5 +79,11 @@
       </div>
     </div>
     <h4 class="mt-4 mb-4">コメント一覧</h4>
+    <%= render "public/shared/comment_view", comments: @comments %>
+    <div class="row">
+      <div class="col text-right">
+        <%= link_to "more", comments_user_path(@user) %>
+      </div>
+    </div>
   </div>
 </div>
