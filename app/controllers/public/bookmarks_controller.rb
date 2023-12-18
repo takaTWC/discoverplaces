@@ -12,4 +12,10 @@ class Public::BookmarksController < ApplicationController
     bookmark.destroy
     redirect_to request.referer
   end
+
+  def index
+    user = current_user
+    bookmark = Bookmark.where(user_id: user.id).order(created_at: :desc).pluck(:post_id)
+    @bookmarks = Post.where(id: bookmark).page(params[:page]).per(5)
+  end
 end

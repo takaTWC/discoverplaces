@@ -310,10 +310,21 @@ body{
     opacity: 1; /* 完全に不透明 */
 }
 
-.card:hover {
+.card:hover,
+.post-item:hover {
     background-color: #f8f9fa;
 }
 
-.card a:hover {
+.card a:hover,
+.post-item a:hover {
     text-decoration: none;
+}
+
+.no-border {
+    border: none;
+}
+
+.no-border th,
+.no-border td {
+    border: none;
 }

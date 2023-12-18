@@ -41,15 +41,6 @@ class Post < ApplicationRecord
     bookmarks.exists?(user_id: user.id)
   end
 
-  #ブックマーク一覧表示
-  def self.bookmarks(user, page, per_page)
-    includes(:bookmarks)
-      .where(bookmarks: {user_id: user.id})
-      .order(created_at: :desc)
-      .page(page)
-      .per(per_page)
-  end
-
   #閲覧数
   def view_count_for_user(current_user)
     unless ViewCount.where(created_at: Time.zone.now.all_day).find_by(user_id: current_user.id, post_id: id)

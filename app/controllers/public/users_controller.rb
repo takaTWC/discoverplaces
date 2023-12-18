@@ -4,6 +4,8 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    bookmark = Bookmark.where(user_id: @user.id).order(created_at: :desc).limit(5).pluck(:post_id)
+    @bookmarks = Post.find(bookmark)
     @following_users = @user.following_users
     @follower_users = @user.follower_users
   end
@@ -16,10 +18,6 @@ class Public::UsersController < ApplicationController
     user = User.find(params[:id])
     user.update(user_params)
     redirect_to user_path(user)
-  end
-
-  def bookmarks
-    @bookmarks = Post.bookmarks(current_user, params[:page], 10)
   end
 
   def follows
