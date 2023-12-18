@@ -27,8 +27,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
-    @tag_list = Tag.all
+    @posts = Post.page(params[:page]).per(5)
   end
 
   private

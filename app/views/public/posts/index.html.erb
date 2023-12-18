@@ -1,4 +1,13 @@
-<% @tag_list.each do |list| %>
-  <%= link_to list.name,search_tag_path(tag_id: tag.id) %>
-  <%= "(#{list.posts.count})" %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="mt-4 mb-4">投稿一覧</h2>
+      <% @posts.each do |post| %>
+        <%= render "public/shared/posts", post: post %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row flex justify-content-center">
+    <%= paginate @posts %>
+  </div>
+</div>
