@@ -3,6 +3,10 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def index
+    @users = User.page(params[:page]).per(10)
+  end
+
   def disable
     @user = User.find(params[:id])
     if @user.update(is_active: false)
