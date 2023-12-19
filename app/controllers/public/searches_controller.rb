@@ -1,7 +1,7 @@
 class Public::SearchesController < ApplicationController
   def search
     @word = params[:word]
-    @posts = Post.looks(params[:word])
+    @posts = Post.page(params[:page]).per(5)
   end
 
   def search_tag
