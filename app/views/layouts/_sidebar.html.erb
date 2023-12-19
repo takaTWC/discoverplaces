@@ -34,6 +34,13 @@
         <span class="tooltip">Post</span>
       </li>
       <li>
+        <%= link_to new_post_path do %>
+          <i class="fa-solid fa-plus"></i>
+          <span class="link_name">New Post</span>
+        <% end %>
+        <span class="tooltip">New Post</span>
+      </li>
+      <li>
         <%= link_to user_bookmarks_path(current_user) do %>
           <i class="fa-solid fa-clipboard"></i>
           <span class="link_name">Bookmarks</span>
@@ -42,7 +49,7 @@
       </li>
       <li class="profile">
         <div class="profile_details">
-          <%= image_tag current_user.image %>
+          <%= image_tag current_user.image, class: "rounded" %>
           <div class="profile_content">
             <div class="name">
               <%= current_user.name %>

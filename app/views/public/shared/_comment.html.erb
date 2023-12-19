@@ -2,12 +2,14 @@
   <p><i class="fa-regular fa-comment"></i> コメント数：<%= post.comments.count %>件</p>
   <% post.comments.each do |comment| %>
     <div class="media mb-3">
-      <%= image_tag comment.user.image, size: "50x50", class: "mr-3 rounded-circle" %>
-      <div class="media-body">
-        <h5 class="mt-0"><%= comment.user.name %></h5>
+      <%= image_tag comment.user.image, size: "50x50", class: "rounded" %>
+      <div class="media-body ml-3">
+        <h5><%= comment.user.name %></h5>
         <small class="text-muted"><%= comment.created_at.strftime('%Y/%m/%d') %></small>
         <p><%= comment.comment %></p>
-        <%= link_to "削除", post_comment_path(post, comment), method: :delete, class: "text-danger" %>
+        <% if current_user == comment.user %>
+          <%= link_to "削除", post_comment_path(post, comment), method: :delete, class: "text-danger" %>
+        <% end %>
       </div>
     </div>
   <% end %>

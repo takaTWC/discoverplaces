@@ -3,14 +3,15 @@
     <div class="col-12">
       <h2 class="mt-4 mb-4">投稿詳細</h2>
       <div class="row">
-        <%= image_tag @post.image, size: "500x500" %>
+        <%= image_tag @post.image, size: "500x500", class: "rounded" %>
       </div>
-      <h4><strong><%= @post.title %></strong></h4>
+      <h4 class="mt-4"><strong><%= @post.title %></strong></h4>
       <div class="d-flex align-items-center my-3">
         <%= render "public/shared/favorite", post: @post %>
         <%= render "public/shared/bookmark", post: @post %>
       </div>
       <p><%= @post.description %></p>
+      <p>投稿者：<%= @post.user.name %></p>
       <div class="d-flex align-items-center my-3">
         <p class="mb-0 mr-3">投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
         <i class="fa-regular fa-eye"></i><%= @post.view_counts.count %>
@@ -29,6 +30,7 @@
     </div>
   </div>
 </div>
+
 <style>#map {height: 600px; width: 100%;}</style>
 <script>
   function initMap(){
