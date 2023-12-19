@@ -31,6 +31,16 @@ class Public::UsersController < ApplicationController
     @users = user.follower_users
   end
 
+  def disable
+    user = current_user
+    if user.update(is_active: false)
+      flash[:notice] = "退会しました"
+      redirect_to root_path
+    else
+      render :show
+    end
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :introduction, :image)
