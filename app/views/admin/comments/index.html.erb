@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="mt-4 mb-4">コメント一覧</h2>
+      <table class = "table">
+        <thead>
+          <th>コメント</th>
+          <th>投稿者</th>
+          <th>投稿日</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <% @comments.first(10).each do |comment| %>
+            <tr>
+              <td><%= comment.comment %></td>
+              <td><%= comment.user.name %></td>
+              <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
+              <td><%= link_to "削除", admin_comment_path(comment), method: :delete %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="row flex justify-content-center">
+        <%= paginate @comments %>
+      </div>
+    </div>
+  </div>
+</div>
