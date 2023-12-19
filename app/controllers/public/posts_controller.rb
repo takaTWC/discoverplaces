@@ -5,13 +5,13 @@ class Public::PostsController < ApplicationController
   end
 
   def create
-    post = Post.new(post_params)
-    post.user = current_user
+    @post = Post.new(post_params)
+    @post.user = current_user
     tag_list = params[:post][:name].split(',')
     Post.transaction do
-      if post.save
-        post.save_tags(tag_list)
-        redirect_to post_path(post)
+      if @post.save
+        @post.save_tags(tag_list)
+        redirect_to post_path(@post)
       else
         render :new
       end

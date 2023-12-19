@@ -11,6 +11,10 @@ class Post < ApplicationRecord
   has_many :view_counts, dependent: :destroy
   accepts_nested_attributes_for :place
 
+  validates :title, presence: true
+  validates :description, presence: true
+  validates :image, presence: true
+
   def save_tags(tags)
     #タグが存在すれば取得する
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
