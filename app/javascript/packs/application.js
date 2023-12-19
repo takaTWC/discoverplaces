@@ -18,15 +18,15 @@ Turbolinks.start()
 ActiveStorage.start()
 
 window.onload = function(){
-  const sidebar = document.querySelector(".sidebar");
-  const closeBtn = document.querySelector("#btn");
-  const searchBtn = document.querySelector(".bx-search")
+    const sidebar = document.querySelector(".sidebar");
+    const closeBtn = document.querySelector("#btn");
+    const searchBtn = document.querySelector(".bx-search")
 
-  closeBtn.addEventListener("click",function(){
-      sidebar.classList.toggle("open")
-  })
+    closeBtn.addEventListener("click",function(){
+        sidebar.classList.toggle("open")
+    })
 
-  searchBtn.addEventListener("click",function(){
-      sidebar.classList.toggle("open")
-  })
+    searchBtn.addEventListener("click",function(){
+        sidebar.classList.toggle("open")
+    })
 }
