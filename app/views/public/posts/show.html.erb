@@ -1,20 +1,34 @@
-<h2>投稿詳細</h2>
-<%= image_tag @post.image, size: "100x100" %>
-<%= @post.title %>
-<%= @post.description %>
-<%= @post.created_at %>
-<% @tags.each do |tag| %>
-  <%= link_to tag.name, search_tag_path(tag_id: tag.id) %>
-<% end %>
-<%= render "public/shared/favorite", post: @post %>
-<%= render "public/shared/bookmark", post: @post %>
-<%= render "public/shared/comment", post: @post, comment: @comment %>
-閲覧数：<%= @post.view_counts.count %>
-<%= @post.place.address %>
-<%= @post.place.latitude %>
-<%= @post.place.longitude %>
-
-<div id='map'></div>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="mt-4 mb-4">投稿詳細</h2>
+      <div class="row">
+        <%= image_tag @post.image, size: "500x500" %>
+      </div>
+      <h4><strong><%= @post.title %></strong></h4>
+      <div class="d-flex align-items-center my-3">
+        <%= render "public/shared/favorite", post: @post %>
+        <%= render "public/shared/bookmark", post: @post %>
+      </div>
+      <p><%= @post.description %></p>
+      <div class="d-flex align-items-center my-3">
+        <p class="mb-0 mr-3">投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+        <i class="fa-regular fa-eye"></i><%= @post.view_counts.count %>
+        <% @tags.each do |tag| %>
+          <div class="ml-3">
+            <%= link_to search_tag_path(tag_id: tag.id) do %>
+              <i class="fa-solid fa-tag"></i> <%= tag.name %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <h4>MAP</h4>
+      <div id='map' class="my-3"></div>
+      <p class="mb-5"><%= @post.place.address %></p>
+      <%= render "public/shared/comment", post: @post, comment: @comment %>
+    </div>
+  </div>
+</div>
 <style>#map {height: 600px; width: 100%;}</style>
 <script>
   function initMap(){

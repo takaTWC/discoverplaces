@@ -34,6 +34,7 @@ class Public::UsersController < ApplicationController
   def disable
     user = current_user
     if user.update(is_active: false)
+      sign_out user
       flash[:notice] = "退会しました"
       redirect_to root_path
     else
