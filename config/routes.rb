@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     get "search" =>"searches#search"
     get "search_tag" => "searches#search_tag"
     get "/about" =>"homes#about"
-    resources :users, only: [:show, :edit, :update] do
+    resources :users, only: [:show, :update] do
       resources :bookmarks, only: [:index, :create, :destroy]
       resources :comments, only: [:index]
       resources :posts, only: [:index]
