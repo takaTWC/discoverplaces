@@ -14,7 +14,7 @@
         <tbody>
           <% @users.first(5).each do |user| %>
             <tr>
-              <td class="align-middle"><%= image_tag user.image, size: "100x100", class: "rounded" %></td>
+              <td class="align-middle"><%= image_tag user.display_image, size: "100x100", class: "rounded" %></td>
               <td class="align-middle">
                 <%= link_to admin_user_path(user) do %>
                   <%= user.name %>

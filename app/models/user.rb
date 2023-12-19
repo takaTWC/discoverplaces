@@ -18,8 +18,16 @@ class User < ApplicationRecord
   has_many :following_users, through: :followers, source: :followed
   has_many :follower_users, through: :followeds, source: :follower
 
+  validates :name, presence: true
+  validates :introduction, presence: true
+
   GUEST_USER_EMAIL = "guest@example.com"
 
+  # アイコン画像がない場合
+  def display_image
+    image.attached? ? image : 'Noimage.jpg'
+  end
+  
   def self.guest
     find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
       user.password = SecureRandom.urlsafe_base64
