@@ -1,29 +1,51 @@
-<h2>新規投稿ページ</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="mt-4 mb-4">新規投稿ページ</h2>
 
-<%= form_with model: @post, local: true do |f| %>
-  タイトル
-  <%= f.text_field :title, autofocus: true, placeholder: "場所" %>
-  説明
-  <%= f.text_area :description, placeholder: "説明" %>
-  画像
-  <%= f.file_field :image, accept: "image/*" %>
-  タグ(,で複数登録できます)
-  <%= f.text_field :name, value: @tag_list, placeholder: "タグ" %>
-  <%= f.fields_for :place do |place_fields| %>
-    <%= place_fields.text_field :address, hidden: true, id: 'address_field', readonly: true %>
-    <%= place_fields.text_field :latitude, hidden: true, id: 'latitude_field', readonly: true %>
-    <%= place_fields.text_field :longitude, hidden: true, id: 'longitude_field', readonly: true %>
-  <% end %>
-  <%= f.submit "投稿" %>
-<% end %>
+      <div class="form-group mt-4">
+        <input id="address" type="textbox" placeholder="場所を検索" class="form-control">
+        <button type="button" class="btn btn-primary mt-2" onclick="codeAddress()">検索</button>
+      </div>
+      <div id='map' class="mt-3 mb-3"></div>
 
-<input id="address" type="textbox" value="Ikebukuro Station">
-<input type="button" value="検索" onclick="codeAddress()">
-<div id="display"></div>
-<div id='map'></div>
+      <%= form_with model: @post, local: true do |f| %>
+        <div class="form-group">
+          <label>タイトル</label>
+          <%= f.text_field :title, autofocus: true, placeholder: "場所", class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <label>説明</label>
+          <%= f.text_area :description, placeholder: "説明", class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <label>画像</label>
+          <%= f.file_field :image, accept: "image/*", class: "form-control-file" %>
+        </div>
+
+        <div class="form-group">
+          <label>タグ(,で複数登録できます)</label>
+          <%= f.text_field :name, value: @tag_list, placeholder: "タグ", class: "form-control" %>
+        </div>
+
+        <%= f.fields_for :place do |place_fields| %>
+          <%= place_fields.text_field :address, hidden: true, id: 'address_field', readonly: true %>
+          <%= place_fields.text_field :latitude, hidden: true, id: 'latitude_field', readonly: true %>
+          <%= place_fields.text_field :longitude, hidden: true, id: 'longitude_field', readonly: true %>
+        <% end %>
+
+        <div class="text-center mt-4 mb-4">
+          <%= f.submit "投稿", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>
 
 <style>#map {height: 600px; width: 100%;}</style>
-
 <script>
   let map;
   let geocoder;
@@ -89,6 +111,13 @@
         alert("見つかりませんでした。");
       }
     });
+
+    // 検索フォームからの値を取得
+    var addressValue = document.getElementById('address').value;
+
+    // titleフィールドに値を設定
+    var titleField = document.querySelector('input[name="post[title]"]');
+    titleField.value = addressValue;
   }
 
   function initMap() {
