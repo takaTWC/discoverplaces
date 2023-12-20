@@ -26,7 +26,9 @@
       <h4>MAP</h4>
       <div id='map' class="my-3"></div>
       <p class="mb-5"><%= @post.place.address %></p>
-      <%= render "public/shared/comment", post: @post, comment: @comment %>
+      <span class="comment_count"><%= render "public/comments/comment_count", post: @post %></span>
+      <span class="comment"><%= render "public/comments/comment", post: @post %></span>
+      <span><%= render "public/comments/comment_form", post: @post, comment: @comment %></span>
     </div>
   </div>
 </div>
