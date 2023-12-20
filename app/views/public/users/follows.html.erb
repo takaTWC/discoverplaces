@@ -1,33 +1,47 @@
-<h2>フォロー</h2>
-  <table class='table'>
-    <thead>
-      <tr>
-        <th>Image</th>
-        <th>name</th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td>
-            <%= link_to user_path(user) do %>
-              <%= image_tag user.image, size: "100x100" %>
-            <% end %>
-          </td>
-          <td><%= user.name %></td>
-          <td>
-            <%= link_to follows_user_path(user) do %>
-              <h6>フォロー<%= user.followers.count %></h6>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to followers_user_path(user) do %>
-              <h6>フォロワー<%= user.followeds.count %></h6>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="mt-4 mb-4">フォロー中</h2>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th></th>
+            <th>ユーザー名</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td class="align-middle">
+                <%= image_tag user.image, size: "50x50", class: "rounded" %>
+              </td>
+              <td class="align-middle">
+                <%= link_to user_path(user) do %>
+                  <%= user.name %>
+                <% end %>
+              </td>
+              <td class="align-middle">
+                <%= link_to follows_user_path(user) do %>
+                  <h6>フォロー<%= user.followers.count %></h6>
+                <% end %>
+              </td>
+              <td class="align-middle">
+                <%= link_to followers_user_path(user) do %>
+                  <h6>フォロワー<%= user.followeds.count %></h6>
+                <% end %>
+              </td>
+              <td class="align-middle">
+                <% if user.following?(current_user) && current_user.following?(user) %>
+                  相互フォロー
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
