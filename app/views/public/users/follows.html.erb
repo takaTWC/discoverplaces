@@ -3,20 +3,11 @@
     <div class="col-12">
       <h2 class="mt-4 mb-4">フォロー中</h2>
       <table class='table'>
-        <thead>
-          <tr>
-            <th></th>
-            <th>ユーザー名</th>
-            <th></th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
         <tbody>
           <% @users.each do |user| %>
             <tr>
               <td class="align-middle">
-                <%= image_tag user.image, size: "50x50", class: "rounded" %>
+                <%= image_tag user.display_image, size: "50x50", class: "rounded" %>
               </td>
               <td class="align-middle">
                 <%= link_to user_path(user) do %>
@@ -25,12 +16,12 @@
               </td>
               <td class="align-middle">
                 <%= link_to follows_user_path(user) do %>
-                  <h6>フォロー<%= user.followers.count %></h6>
+                  <h6><%= user.followers.count %> フォロー</h6>
                 <% end %>
               </td>
               <td class="align-middle">
                 <%= link_to followers_user_path(user) do %>
-                  <h6>フォロワー<%= user.followeds.count %></h6>
+                  <h6><%= user.followeds.count %> フォロワー</h6>
                 <% end %>
               </td>
               <td class="align-middle">
