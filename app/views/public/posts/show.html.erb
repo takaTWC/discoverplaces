@@ -7,7 +7,7 @@
       </div>
       <h4 class="mt-4"><strong><%= @post.title %></strong></h4>
       <div class="d-flex align-items-center my-3">
-        <%= render "public/shared/favorite", post: @post %>
+        <span class="favorite_buttons_<%= @post.id %>"><%= render "public/favorites/favorite", post: @post %></span>
         <%= render "public/shared/bookmark", post: @post %>
       </div>
       <p><%= @post.description %></p>
