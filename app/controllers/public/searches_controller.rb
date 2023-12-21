@@ -6,6 +6,6 @@ class Public::SearchesController < ApplicationController
 
   def search_tag
     @tag = Tag.find(params[:tag_id])
-    @posts = Post.page(params[:page]).per(5)
+    @posts = @tag.posts.page(params[:page]).per(5)
   end
 end
