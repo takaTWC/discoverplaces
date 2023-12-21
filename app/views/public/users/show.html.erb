@@ -41,7 +41,7 @@
           <th>フォロー数：</th>
           <td>
             <%= link_to follows_user_path(@user) do %>
-              <%= @user.followers.count %>
+              <span class="followers_count"><%= render "public/relationships/followers_count", user: @user %></span>
             <% end %>
           </td>
         </tr>
@@ -49,7 +49,7 @@
           <th>フォロワー数：</th>
           <td>
             <%= link_to followers_user_path(@user) do %>
-              <%= @user.followeds.count %>
+              <span class="followeds_count"><%= render "public/relationships/followeds_count", user: @user %></span>
             <% end %>
           </td>
         </tr>
