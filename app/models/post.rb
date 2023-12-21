@@ -16,20 +16,12 @@ class Post < ApplicationRecord
   validates :image, presence: true
 
   def save_tags(tags)
-    #タグが存在すれば取得する
-    current_tags = self.tags.pluck(:name) unless self.tags.nil?
-    #既存タグ
-    old_tags = current_tags - tags
-    #新規タグ
-    new_tags = tags - current_tags
-    #重複するタグを削除
-    old_tags.each do |old_name|
-      self.workout_tags.delete Tag.find_by(name:old_name)
-    end
-    #新規タグを保存
-    new_tags.each do |new_name|
-      tag = Tag.find_or_create_by(name:new_name)
-      self.tags << tag
+    # 現在のタグの関連付けを削除し新しいタグに更新
+    self.tags.clear
+    # 新規または既存のタグを追加
+    tags.each do |tag_name|
+      tag = Tag.find_or_create_by(name: tag_name)
+      self.tags << tag unless self.tags.include?(tag)
     end
   end
 
