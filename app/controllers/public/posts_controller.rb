@@ -7,7 +7,8 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
-    tag_list = params[:post][:name].split(',')
+    # Unicodeで半角スペース、全角スペースを指定
+    tag_list = params[:post][:name].split(/\s|\u3000/)
     Post.transaction do
       if @post.save
         @post.save_tags(tag_list)
