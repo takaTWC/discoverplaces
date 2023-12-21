@@ -27,7 +27,8 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.page(params[:page]).per(5)
+    @user = User.find(params[:user_id])
+    @posts = @user.posts.page(params[:page]).per(5)
   end
 
   private
