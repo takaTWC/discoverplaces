@@ -45,6 +45,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :destroy]
       resource :bookmarks, only: [:create, :destroy]
     end
+    resources :contacts, only: [:new, :create, :show, :index]
   end
 
   devise_scope :user do

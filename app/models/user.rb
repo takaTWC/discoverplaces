@@ -17,6 +17,7 @@ class User < ApplicationRecord
   #一覧
   has_many :following_users, through: :followers, source: :followed
   has_many :follower_users, through: :followeds, source: :follower
+  has_many :contacts, dependent: :destroy
 
   validates :name, presence: true
   validates :introduction, presence: true
@@ -27,7 +28,7 @@ class User < ApplicationRecord
   def display_image
     image.attached? ? image : 'Noimage.jpg'
   end
-  
+
   def self.guest
     find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
       user.password = SecureRandom.urlsafe_base64
