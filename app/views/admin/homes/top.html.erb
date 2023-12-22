@@ -36,18 +36,18 @@
       <h4 class="mt-4">コメント一覧</h4>
       <table class = "table">
         <thead>
-          <th>コメント</th>
-          <th>投稿者</th>
-          <th>投稿日</th>
+          <th class="align-middle">コメント</th>
+          <th class="align-middle">投稿者</th>
+          <th class="align-middle">投稿日</th>
           <th></th>
         </thead>
         <tbody>
           <% @comments.first(10).each do |comment| %>
             <tr>
-              <td><%= comment.comment %></td>
-              <td><%= comment.user.name %></td>
-              <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
-              <td><%= link_to "削除", admin_comment_path(comment), method: :delete %></td>
+              <td class="align-middle"><%= comment.comment %></td>
+              <td class="align-middle"><%= comment.user.name %></td>
+              <td class="align-middle"><%= comment.created_at.strftime('%Y/%m/%d') %></td>
+              <td class="align-middle"><%= link_to "削除", admin_comment_path(comment), method: :delete %></td>
             </tr>
           <% end %>
         </tbody>
@@ -61,18 +61,20 @@
       <h4 class="mt-4">問い合わせ一覧</h4>
       <table class="table">
         <thead>
-          <th>問い合わせ日</th>
-          <th>投稿者</th>
-          <th>件名</th>
-          <th>対応状況</th>
+          <th class="align-middle">問い合わせ日</th>
+          <th class="align-middle">投稿者</th>
+          <th class="align-middle">会員登録</th>
+          <th class="align-middle">件名</th>
+          <th class="align-middle">対応状況</th>
         </thead>
         <tbody>
           <% @contacts.first(10).each do |contact| %>
             <tr>
-              <td><%= contact.created_at.strftime('%Y/%m/%d') %></td>
-              <td><%= link_to contact.title, admin_contact_path(contact) %></td>
-              <td><%= contact.title %></td>
-              <td><%= contact.support == '未対応' ? '未対応' : '対応済み' %></td>
+              <td class="align-middle"><%= contact.created_at.strftime('%Y/%m/%d') %></td>
+              <td class="align-middle"><%= contact.name %></td>
+              <td class="align-middle"><%= contact.user_id.present? ? '済' : '未' %></td>
+              <td class="align-middle"><%= link_to contact.title, admin_contact_path(contact) %></td>
+              <td class="align-middle"><%= contact.support == '未対応' ? '未対応' : '対応済み' %></td>
             </tr>
           <% end %>
         </tbody>
