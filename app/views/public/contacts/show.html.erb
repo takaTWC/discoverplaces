@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="mt-4 mb-4">件名：<%= @contact.title %></h2>
+      <p><%= @contact.contact %></p>
+      <% if @contact.reply_status %>
+        <h4>担当者からの返信</h4>
+        <p><%= @contact.reply %></p>
+      <% else %>
+        <p>返信はありません。</p>
+      <% end %>
+    </div>
+  </div>
+</div>
