@@ -22,7 +22,8 @@ class Public::ContactsController < ApplicationController
   end
 
   def index
-
+    @user = current_user
+    @contacts = @user.contacts.page(params[:page]).per(5)
   end
 
   private
