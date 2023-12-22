@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="mt-4 mb-4"><i class="fa-solid fa-tag"></i><%= @place.address %>の投稿</h2>
+      <% @posts.each do |post| %>
+        <%= render "public/shared/posts", post: post %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row flex justify-content-center">
+    <%= paginate @posts %>
+  </div>
+</div>

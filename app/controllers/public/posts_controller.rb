@@ -9,14 +9,9 @@ class Public::PostsController < ApplicationController
     @post.user = current_user
     # Unicodeで半角スペース、全角スペースを指定
     tag_list = params[:post][:name].split(/\s|\u3000/)
-    # 位置情報のパラメータ
-    address = params[:post][:address]
-    latitude = params[:post][:latitude]
-    longitude = params[:post][:longitude]
     Post.transaction do
       if @post.save
         @post.save_tags(tag_list)
-        @post.save_with_place(address, latitude, longitude)
         redirect_to post_path(@post)
       else
         render :new

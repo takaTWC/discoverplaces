@@ -25,38 +25,24 @@ class Post < ApplicationRecord
     end
   end
 
-  def save_with_place(address, latitude, longitude)
-    # Place テーブルで address を検索
-    place = Place.find_or_initialize_by(address: address)
-
-    # 新しい場合、緯度経度を設定
-    if place.new_record?
-      place.latitude = latitude
-      place.longitude = longitude
-      place.save
-    end
-
-    # Post の place_id を設定
-    self.place = place
-    save
-  end
-
   def self.looks(word)
     where("title LIKE ?", "%#{word}%")
   end
 
   def favorited_by?(user)
-    favorites.exists?(user_id: user.id)
+    user && favorites.exists?(user_id: user.id)
   end
 
   def marked_by?(user)
-    bookmarks.exists?(user_id: user.id)
+    user && bookmarks.exists?(user_id: user.id)
   end
 
   #閲覧数
   def view_count_for_user(current_user)
-    unless ViewCount.where(created_at: Time.zone.now.all_day).find_by(user_id: current_user.id, post_id: id)
-      current_user.view_counts.create(post_id: id)
+    if current_user
+      unless ViewCount.where(created_at: Time.zone.now.all_day).find_by(user_id: current_user.id, post_id: id)
+        current_user.view_counts.create(post_id: id)
+      end
     end
   end
 

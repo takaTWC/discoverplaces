@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get "search" =>"searches#search"
     get "search_tag" => "searches#search_tag"
+    get "search_place" => "searches#search_place"
     get "/about" =>"homes#about"
     resources :users, only: [:show, :update] do
       resources :bookmarks, only: [:index, :create, :destroy]
