@@ -12,6 +12,7 @@
           <p>みなさんもお気に入りの場所を投稿・検索してみませんか。</p>
         </div>
         <div class="row flex justify-content-center">
+          <%= link_to "新規登録", new_user_registration_path, class: "btn btn-success" %>
           <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary ml-2 mr-2" %>
           <%= link_to "試しに使ってみる", users_guest_sign_in_path, method: :post, class: "btn btn-warning" %>
         </div>
@@ -40,5 +41,5 @@
   imageElement.classList.add("visible");
 
   // 5秒ごとに画像を変更
-  setInterval(changeImage, 7000);
+  setInterval(changeImage, 5000);
 </script>
