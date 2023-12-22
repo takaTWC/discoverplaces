@@ -8,7 +8,7 @@ class CreateContacts < ActiveRecord::Migration[6.1]
       t.string :email
       t.string :name
       t.text :reply
-      t.boolean :is_support, null: false, default: false
+      t.text :support, null: false, default: "未対応"
       t.timestamps
     end
   end

@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2023_12_22_084603) do
     t.string "email"
     t.string "name"
     t.text "reply"
-    t.boolean "is_support", default: false, null: false
+    t.text "support", default: "未対応", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
