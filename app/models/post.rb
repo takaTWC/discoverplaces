@@ -25,6 +25,20 @@ class Post < ApplicationRecord
     end
   end
 
+  def save_with_place(address, latitude, longitude)
+    # Place テーブルで address を検索
+    place = Place.find_or_initialize_by(address: address)
+
+    # 新しい場合、緯度経度を設定
+    if place.new_record?
+      place.latitude = latitude
+      place.longitude = longitude
+      place.save
+    end
+
+    self.update(place_id: place.id)
+  end
+
   def self.looks(word)
     where("title LIKE ?", "%#{word}%")
   end
