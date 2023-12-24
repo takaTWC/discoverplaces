@@ -328,3 +328,42 @@ body{
 .no-border td {
     border: none;
 }
+
+.dynamic-background {
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.9s ease-in-out; /* 画像の変更にフェード効果を追加 */
+}
+
+h2 {
+  z-index: 10; /* 他の要素より高い値を設定 */
+  position: relative; /* z-indexを機能させるために必要 */
+}
+
+.card {
+  transition: all 0.3s ease-in-out;
+}
+
+.swiper-container {
+    max-width: 100%; /* コンテナの最大幅をページ幅に合わせる */
+    overflow: hidden; /* はみ出した部分を隠す */
+}
+
+.like-ranking-buttons, .view-ranking-buttons {
+  position: relative; /* 相対位置指定 */
+  text-align: center;
+  width: 100%;
+}
+
+.swiper-button-next, .swiper-button-prev {
+  position: absolute;
+  transform: translateY(-50%); /* Y軸方向の中心を調整 */
+}
+
+.swiper-button-next {
+  right: 10px; /* 右側の端に配置 */
+}
+
+.swiper-button-prev {
+  left: 10px; /* 左側の端に配置 */
+}
