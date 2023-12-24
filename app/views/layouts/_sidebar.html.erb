@@ -69,6 +69,49 @@
           <% end %>
         </div>
       </li>
+    <% elsif admin_signed_in? %>
+      <li>
+        <%= link_to admin_root_path do %>
+          <i class="fa-solid fa-house"></i>
+          <span class="link_name">Home</span>
+        <% end %>
+        <span class="tooltip">Home</span>
+      </li>
+      <li>
+        <%= link_to admin_users_path do %>
+          <i class="fa-regular fa-user"></i>
+          <span class="link_name">Users</span>
+        <% end %>
+        <span class="tooltip">Users</span>
+      </li>
+      <li>
+        <%= link_to admin_comments_path do %>
+          <i class="fa-solid fa-comment"></i>
+          <span class="link_name">Comments</span>
+        <% end %>
+        <span class="tooltip">Comments</span>
+      </li>
+      <li>
+        <%= link_to admin_contacts_path do %>
+          <i class="fa-solid fa-phone fa-lg"></i>
+          <span class="link_name">Contacts</span>
+        <% end %>
+        <span class="tooltip">Contacts</span>
+      </li>
+      <li class="profile">
+        <div class="profile_details">
+          <div class="profile_content">
+            <div class="name">
+              <%= current_admin.email %>
+            </div>
+          </div>
+        </div>
+        <div class="log_out">
+          <%= link_to destroy_admin_session_path, method: :delete do %>
+            <i class="fa-solid fa-right-from-bracket"></i>
+          <% end %>
+        </div>
+      </li>
     <% else %>
       <li>
         <%= link_to root_path do %>
