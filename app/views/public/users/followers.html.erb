@@ -10,22 +10,30 @@
                 <%= image_tag user.display_image, size: "50x50", class: "rounded" %>
               </td>
               <td class="align-middle">
-                <%= link_to user_path(user) do %>
-                  <%= user.name %>
+                <% if user.is_active %>
+                  <%= link_to user_path(user) do %>
+                    <%= user.status_check_name %>
+                  <% end %>
+                <% else %>
+                  <%= user.status_check_name %>
                 <% end %>
               </td>
               <td class="align-middle">
-                <%= link_to follows_user_path(user) do %>
-                  <h6><%= user.followers.count %> フォロー中</h6>
+                <% if user.is_active %>
+                  <%= link_to follows_user_path(user) do %>
+                    <h6><%= user.followers.count %> フォロー中</h6>
+                  <% end %>
                 <% end %>
               </td>
               <td class="align-middle">
-                <%= link_to followers_user_path(user) do %>
-                  <h6><%= user.followeds.count %> フォロワー</h6>
+                <% if user.is_active %>
+                  <%= link_to followers_user_path(user) do %>
+                    <%= user.followeds.count %> フォロワー
+                  <% end %>
                 <% end %>
               </td>
               <td class="align-middle">
-                <% if user.following?(current_user) && current_user.following?(user) %>
+                <% if user.following?(current_user) && current_user.following?(user) && user.is_active %>
                   相互フォロー
                 <% end %>
               </td>

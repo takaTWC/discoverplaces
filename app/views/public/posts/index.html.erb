@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h2 class="mt-4 mb-4">投稿一覧</h2>
+      <h2 class="mt-4 mb-4"><%= @user.name %>の投稿一覧</h2>
       <% @posts.each do |post| %>
         <%= render "public/shared/posts", post: post %>
       <% end %>

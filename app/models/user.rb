@@ -26,7 +26,7 @@ class User < ApplicationRecord
 
   # アイコン画像がない場合
   def display_image
-    image.attached? ? image : 'Noimage.jpg'
+    image.attached?&& is_active ? image : 'Noimage.jpg'
   end
 
   def self.guest
@@ -52,5 +52,9 @@ class User < ApplicationRecord
   #フォロー時にtrue
   def following?(user)
     following_users.include?(user)
+  end
+
+  def status_check_name
+    is_active ? name : "このユーザーは退会しています"
   end
 end
