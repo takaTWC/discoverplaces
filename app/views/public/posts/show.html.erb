@@ -6,10 +6,12 @@
         <%= image_tag @post.image, class: "img-fluid rounded d-block mx-auto" %>
       </div>
       <h4 class="mt-4"><strong><%= @post.title %></strong></h4>
-      <div class="d-flex align-items-center my-3">
-        <span class="favorite_buttons_<%= @post.id %>"><%= render "public/favorites/favorite", post: @post %></span>
-        <span class="bookmark_buttons_<%= @post.id %> ml-2"><%= render "public/bookmarks/bookmark", post: @post %></span>
-      </div>
+      <% if user_signed_in? %>
+        <div class="d-flex align-items-center my-3">
+          <span class="favorite_buttons_<%= @post.id %>"><%= render "public/favorites/favorite", post: @post %></span>
+          <span class="bookmark_buttons_<%= @post.id %> ml-2"><%= render "public/bookmarks/bookmark", post: @post %></span>
+        </div>
+      <% end %>
       <p><%= @post.description %></p>
       <p>投稿者：
         <%= link_to_if @post.user.is_active, @post.user.status_check_name, user_path(@post.user) %>
@@ -33,7 +35,9 @@
       </div>
       <span class="comment_count"><%= render "public/comments/comment_count", post: @post %></span>
       <span class="comment"><%= render "public/comments/comment", post: @post %></span>
-      <span><%= render "public/comments/comment_form", post: @post, comment: @comment %></span>
+      <<% if user_signed_in? %>
+        <%= render "public/comments/comment_form", post: @post, comment: @comment %>
+      <% end %>
     </div>
   </div>
 </div>
