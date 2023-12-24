@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!, except: [:show]
   def new
     @post = Post.new
     @post.build_place
