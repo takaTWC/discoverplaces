@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-8 col-sm-6">
+    <div class="col-md-8 col-12">
       <h2 class="mt-4 mb-4"><%= @user.name %>さんのマイページ</h2>
     </div>
-    <div class="col-md-4 col-sm-6 text-end">
+    <div class="col-md-4 col-12 text-end">
       <!--ログインしているユーザーかつゲストではない場合-->
       <% if current_user == @user && @user.email != "guest@example.com" %>
         <%= render "profile_edit" %>
@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class="row align-items-center">
-    <div class="col-4">
+    <div class="col-md-4 col-12">
       <div>
         <%= image_tag @user.display_image, size: "200x200", class: "rounded" %>
       </div>
@@ -21,7 +21,7 @@
         </div>
       <% end %>
     </div>
-    <div class="col-8">
+    <div class="col-md-8 col-12">
       <table>
         <tr>
           <th>ユーザー名：</th>

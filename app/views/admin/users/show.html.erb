@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
-    <h2 class="mt-4 mb-4"><%= @user.name %>さんの詳細情報</h2>
+    <h2 class="mt-4 mb-4 col-12"><%= @user.name %>さんの詳細情報</h2>
   </div>
   <div class="row align-items-center">
-    <div class="col-4">
+    <div class="col-md-4 col-sm-12">
       <div>
         <%= image_tag @user.display_image, size: "200x200", class: "rounded" %>
       </div>
@@ -13,37 +13,39 @@
         <%= link_to "有効化", enable_admin_user_path(@user.id), method: :patch, class: "btn btn-success" %>
       <% end %>
     </div>
-    <div class="col-8">
-      <table>
-        <tr>
-          <th>ユーザー名：</th>
-          <td><%= @user.name %></td>
-        </tr>
-        <tr>
-          <th>メールアドレス：</th>
-          <td><%= @user.email %></td>
-        </tr>
-        <tr>
-          <th>自己紹介：</th>
-          <td><%= @user.introduction %></td>
-        </tr>
-        <tr>
-          <th>フォロー数：</th>
-          <td>
-            <%= link_to follows_user_path(@user) do %>
-              <%= @user.followers.count %>
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-          <th>フォロワー数：</th>
-          <td>
-            <%= link_to followers_user_path(@user) do %>
-              <%= @user.followeds.count %>
-            <% end %>
-          </td>
-        </tr>
-      </table>
+    <div class="col-md-8 col-sm-12">
+      <div class="table-responsive">
+        <table>
+          <tr>
+            <th>ユーザー名：</th>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス：</th>
+            <td><%= @user.email %></td>
+          </tr>
+          <tr>
+            <th>自己紹介：</th>
+            <td><%= @user.introduction %></td>
+          </tr>
+          <tr>
+            <th>フォロー数：</th>
+            <td>
+              <%= link_to follows_user_path(@user) do %>
+                <%= @user.followers.count %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th>フォロワー数：</th>
+            <td>
+              <%= link_to followers_user_path(@user) do %>
+                <%= @user.followeds.count %>
+              <% end %>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </div>

@@ -20,7 +20,7 @@
         <p class="mb-0 mr-3">投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
         <i class="fa-regular fa-eye"></i><%= @post.view_counts.count %>
         <% @tags.each do |tag| %>
-          <div class="ml-3">
+          <div class="ml-3 tag">
             <%= link_to search_tag_path(tag_id: tag.id) do %>
               <i class="fa-solid fa-tag"></i> <%= tag.name %>
             <% end %>
@@ -35,7 +35,7 @@
       </div>
       <span class="comment_count"><%= render "public/comments/comment_count", post: @post %></span>
       <span class="comment"><%= render "public/comments/comment", post: @post %></span>
-      <<% if user_signed_in? %>
+      <% if user_signed_in? %>
         <%= render "public/comments/comment_form", post: @post, comment: @comment %>
       <% end %>
     </div>

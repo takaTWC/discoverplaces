@@ -1,20 +1,22 @@
-      <table class="table">
-        <thead>
-          <tr>
-            <th>コメント</th>
-            <th>投稿タイトル</th>
-            <th>投稿者</th>
-            <th>コメント日</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% comments.each do |comment| %>
-            <tr>
-              <td><%= comment.comment %></td>
-              <td><%= link_to comment.post.title, post_path(comment.post) %></td>
-              <td><%= link_to comment.post.user.name, user_path(comment.post.user) %></td>
-              <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>コメント</th>
+        <th>投稿タイトル</th>
+        <th>投稿者</th>
+        <th>コメント日</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% comments.each do |comment| %>
+        <tr>
+          <td><%= comment.comment %></td>
+          <td><%= link_to comment.post.title, post_path(comment.post) %></td>
+          <td><%= link_to comment.post.user.name, user_path(comment.post.user) %></td>
+          <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
