@@ -49,10 +49,10 @@
       <% end %>
     </div>
   </div>
-    <div class="like-ranking-buttons">
-      <div class="swiper-button-next like-next"></div>
-      <div class="swiper-button-prev like-prev"></div>
-    </div>
+  <div class="like-ranking-buttons">
+    <div class="swiper-button-next like-next"></div>
+    <div class="swiper-button-prev like-prev"></div>
+  </div>
 
   <h2 class="mt-4 mb-4">閲覧数ランキング</h2>
   <div class="swiper-container view-ranking">
@@ -106,7 +106,8 @@
       prevEl: '.like-prev',
     },
     breakpoints: {
-      640: { slidesPerView: 1, spaceBetween: 20 },
+      1: { slidesPerView: 1, spaceBetween: 20 },
+      500: { slidesPerView: 2, spaceBetween: 20 },
       768: { slidesPerView: 3, spaceBetween: 30 },
       1024: { slidesPerView: 5, spaceBetween: 30 },
     },
@@ -125,7 +126,8 @@
       prevEl: '.view-prev',
     },
     breakpoints: {
-      640: { slidesPerView: 1, spaceBetween: 20 },
+      1: { slidesPerView: 1, spaceBetween: 20 },
+      500: { slidesPerView: 2, spaceBetween: 20 },
       768: { slidesPerView: 3, spaceBetween: 30 },
       1024: { slidesPerView: 5, spaceBetween: 30 },
     },

@@ -367,3 +367,9 @@ h2 {
 .swiper-button-prev {
   left: 10px; /* 左側の端に配置 */
 }
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 16px;
+  }
+}
