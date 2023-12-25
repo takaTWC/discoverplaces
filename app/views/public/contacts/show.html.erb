@@ -2,13 +2,24 @@
   <div class="row">
     <div class="col-12">
       <h2 class="mt-4 mb-4">件名：<%= @contact.title %></h2>
-      <p><%= @contact.contact %></p>
-      <% if @contact.reply_status %>
-        <h4>担当者からの返信</h4>
-        <p><%= @contact.reply %></p>
-      <% else %>
-        <p>返信はありません。</p>
-      <% end %>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>問い合わせ内容</th>
+            <td><%= @contact.contact %></td>
+          </tr>
+          <tr>
+            <th>返信</th>
+            <td>
+              <% if @contact.reply_status %>
+                担当者からの返信：<%= @contact.reply %>
+              <% else %>
+                返信はありません。
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
