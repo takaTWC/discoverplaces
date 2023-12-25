@@ -344,6 +344,13 @@ h2 {
   transition: all 0.3s ease-in-out;
 }
 
+.footer {
+  background-color: #ffffff; /* フッターの背景色 */
+  color: #000000; /* フッター内のテキスト色 */
+  text-align: center; /* テキストを中央揃えに */
+  padding: 10px; /* パディングを追加 */
+}
+
 .swiper-container {
     max-width: 100%; /* コンテナの最大幅をページ幅に合わせる */
     overflow: hidden; /* はみ出した部分を隠す */
