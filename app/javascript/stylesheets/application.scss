@@ -380,3 +380,18 @@ h2 {
     font-size: 16px;
   }
 }
+
+@media (max-width: 600px) {
+  .card-img-overlay p {
+    display: none;
+    }
+
+  .btn {
+    padding: 8px 12px; /* ボタンのパディングを調整 */
+    font-size: 10px; /* ボタンのテキストサイズを調整 */
+    }
+
+  h1 {
+    font-size: 12px;
+  }
+}
