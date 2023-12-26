@@ -1,6 +1,6 @@
 <div class="container">
   <div class="card bg-dark text-white">
-    <img id="dynamicImage" class="fade-in card-img" src="top-1.jpg" alt="Top image">
+    <%= image_tag "top-1.jpg", id: "dynamicImage", class: "fade-in card-img" %>
     <div class="card-img-overlay">
       <% if user_signed_in? %>
         <div class="row flex justify-content-center">
