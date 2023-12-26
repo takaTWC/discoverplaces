@@ -18,7 +18,7 @@
                 <td><%= contact.name %></td>
                 <td><%= contact.user_id.present? ? '済' : '未' %></td>
                 <td><%= link_to contact.title, admin_contact_path(contact) %></td>
-                <td><%= contact.support == '未対応' ? '未対応' : '対応済み' %></td>
+                <td><%= contact.support.present? ? '対応済み' : '未対応' %></td>
               </tr>
             <% end %>
           </tbody>

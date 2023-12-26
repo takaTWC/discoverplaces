@@ -79,7 +79,7 @@
                 <td class="align-middle"><%= contact.name %></td>
                 <td class="align-middle"><%= contact.user_id.present? ? '済' : '未' %></td>
                 <td class="align-middle"><%= link_to contact.title, admin_contact_path(contact) %></td>
-                <td class="align-middle"><%= contact.support == '未対応' ? '未対応' : '対応済み' %></td>
+                <td class="align-middle"><%= contact.support.present? ? '対応済み' : '未対応' %></td>
               </tr>
             <% end %>
           </tbody>
