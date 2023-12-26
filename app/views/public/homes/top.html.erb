@@ -89,7 +89,14 @@
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
-  var images = ["top-1.jpg", "top-2.jpg", "top-3.jpg", "top-4.jpg", "top-5.jpg", "top-6.jpg"];
+  var images = [
+    "<%= asset_path(top-1.jpg) %>",
+    "<%= asset_path(top-2.jpg) %>",
+    "<%= asset_path(top-3.jpg) %>",
+    "<%= asset_path(top-4.jpg) %>",
+    "<%= asset_path(top-5.jpg) %>",
+    "<%= asset_path(top-6.jpg) %>",
+  ];
   var currentIndex = 0;
   var imageElement = document.getElementById("dynamicImage");
 
