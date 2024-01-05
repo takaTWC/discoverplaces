@@ -345,14 +345,16 @@ h2 {
 }
 
 .footer {
-  background-color: #ffffff; /* フッターの背景色 */
-  color: #000000; /* フッター内のテキスト色 */
-  text-align: center; /* テキストを中央揃えに */
-  padding: 10px; /* パディングを追加 */
+  background-color: var(--color-body);
+  color: #000000;
+  text-align: center;
+  padding: 10px;
+  border-top: 1px solid #fff;
+  margin-top: 4px;
 }
 
 .swiper-container {
-    max-width: 100%; /* コンテナの最大幅をページ幅に合わせる */
+    max-width: 100%;
     overflow: hidden; /* はみ出した部分を隠す */
 }
 
@@ -383,11 +385,11 @@ h2 {
   h2, h4 {
     font-size: 18px;
   }
-  
+
   p, .btn {
     font-size: 14px;
   }
-  
+
   #map {
     height: 400px;
   }
