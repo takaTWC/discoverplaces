@@ -103,17 +103,14 @@
     markers = [];
   }
 
-
   function codeAddress() {
     let inputAddress = document.getElementById("address").value;
-
     geocoder.geocode({ address: inputAddress }, function (results, status) {
       if (status == "OK") {
         // Add a marker at the input address and display its address and coordinates
         let currentAddress = results[0].formatted_address;
         let location = results[0].geometry.location;
         addMarker(location);
-
         // 住所と座標を取得してHTMLタグに表示
         address = currentAddress;
         latitude = location.lat();
@@ -179,7 +176,7 @@
   }
 
   var script = document.createElement('script');
-  script.src = "https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initMap";
+  script.src = "https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&libraries=places&callback=initMap";
   script.async = true;
 
   // initMapをwindowオブジェクトにアタッチ
