@@ -4,10 +4,14 @@
     <div class="media-body ml-3">
       <h5><%= comment.user.status_check_name %></h5>
       <small class="text-muted"><%= comment.created_at.strftime('%Y/%m/%d') %></small>
-      <p><%= comment.comment %></p>
+      <% if comment.score < -0.8 %>
+        <p class="translatable-text mt-2"><small class="text-secondary">不適切なコメントと判定されたため非表示にしています。</small></p>
+      <% else %>
+        <p><%= comment.comment %></p>
+      <% end %>
       <% if current_user == comment.user %>
         <%= link_to "削除", post_comment_path(post, comment), method: :delete, class: "text-danger", remote: true %>
       <% end %>
-    </div>
+      </div>
   </div>
 <% end %>
