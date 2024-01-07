@@ -9,15 +9,17 @@
       <div class="table-responsive">
         <table class = "table">
           <thead>
-            <th>コメント</th>
-            <th>投稿者</th>
-            <th>投稿名</th>
-            <th>スコア</th>
-            <th>投稿日</th>
-            <th></th>
+            <tr>
+              <th>コメント</th>
+              <th>投稿者</th>
+              <th>投稿名</th>
+              <th>スコア</th>
+              <th>投稿日</th>
+              <th></th>
+            </tr>
           </thead>
           <tbody>
-            <% @comments.first(10).each do |comment| %>
+            <% @comments.each do |comment| %>
               <tr>
                 <td><%= comment.comment %></td>
                 <td><%= link_to comment.user.name, admin_user_path(comment.user) %></td>

@@ -2,6 +2,8 @@
   <div class="row">
     <div class="col-12">
       <h2 class="mt-4 mb-4">問い合わせ一覧</h2>
+      <%= link_to '新しい順', admin_contacts_path(latest: "true") %>
+      |<%= link_to '古い順', admin_contacts_path(old: "true") %>
       <div class="table-responsive">
         <table class = "table">
           <thead>
@@ -14,7 +16,7 @@
           <tbody>
             <% @contacts.first(10).each do |contact| %>
               <tr>
-                <td><%= contact.created_at.strftime('%Y/%m/%d') %></td>
+                <td><%= contact.created_at.strftime('%Y/%m/%d %I:%M:%S %p') %></td>
                 <td><%= contact.name %></td>
                 <td><%= contact.user_id.present? ? '済' : '未' %></td>
                 <td><%= link_to contact.title, admin_contact_path(contact) %></td>

@@ -1,7 +1,14 @@
 class Admin::ContactsController < ApplicationController
   before_action :authenticate_admin!
   def index
-    @contacts = Contact.page(params[:page]).per(10)
+    if params[:latest]
+      base_query = Contact.latest
+    elsif params[:old]
+      base_query = Contact.old
+    else
+      base_query = Contact.all
+    end
+    @contacts = base_query.page(params[:page]).per(10)
   end
 
   def show
