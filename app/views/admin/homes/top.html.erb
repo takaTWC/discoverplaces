@@ -75,7 +75,7 @@
           <tbody>
             <% @contacts.first(10).each do |contact| %>
               <tr>
-                <td class="align-middle"><%= contact.created_at.strftime('%Y/%m/%d') %></td>
+                <td class="align-middle"><%= contact.created_at.strftime('%Y/%m/%d %I:%M:%S %p') %></td>
                 <td class="align-middle"><%= contact.name %></td>
                 <td class="align-middle"><%= contact.user_id.present? ? '済' : '未' %></td>
                 <td class="align-middle"><%= link_to contact.title, admin_contact_path(contact) %></td>
