@@ -42,10 +42,10 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
 
-bind "unix:///home/ec2-user/discoverplaces/tmp/sockets/puma.sock"
+bind "unix://#{Rails.root}/tmp/sockets/puma.sock"
 rails_root = Dir.pwd
 # 本番環境のみデーモン起動
-if ENV.fetch("RAILS_ENV") == "production"
+if Rails.env.production?
   pidfile File.join(rails_root, 'tmp', 'pids', 'puma.pid')
   state_path File.join(rails_root, 'tmp', 'pids', 'puma.state')
   stdout_redirect(
@@ -53,5 +53,6 @@ if ENV.fetch("RAILS_ENV") == "production"
     File.join(rails_root, 'log', 'puma-error.log'),
     true
   )
+  # デーモン
   daemonize
 end
