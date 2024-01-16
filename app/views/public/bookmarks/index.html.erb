@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="mt-4 mb-4">クリップ一覧</h2>
+      <% @bookmarks.each do |post| %>
+        <%= render "public/shared/posts", post: post %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row flex justify-content-center">
+    <%= paginate @bookmarks %>
+  </div>
+</div>

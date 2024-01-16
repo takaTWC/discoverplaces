@@ -8,6 +8,25 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+import "jquery";
+import "popper.js";
+import "bootstrap";
+import "../stylesheets/application";
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+window.onload = function(){
+    const sidebar = document.querySelector(".sidebar");
+    const closeBtn = document.querySelector("#btn");
+    const searchBtn = document.querySelector(".bx-search")
+
+    closeBtn.addEventListener("click",function(){
+        sidebar.classList.toggle("open")
+    })
+
+    searchBtn.addEventListener("click",function(){
+        sidebar.classList.toggle("open")
+    })
+}

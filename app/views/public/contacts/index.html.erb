@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="mt-4 mb-4"><%= @user.name %>さんのお問い合わせ一覧</h2>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>問い合わせ日</th>
+              <th>件名</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @contacts.each do |contact| %>
+              <tr>
+                <td><%= contact.created_at.strftime('%Y/%m/%d') %></td>
+                <td><%= link_to contact.title, contact_path(contact) %></td>
+                <td><%= contact.reply.present? ? '返信あり' : '返信なし' %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row flex justify-content-center">
+    <%= paginate @contacts %>
+  </div>
+</div>

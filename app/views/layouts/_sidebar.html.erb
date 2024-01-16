@@ -1,0 +1,153 @@
+<div class="sidebar">
+  <div class="logo_details">
+    <div class="logo_name">Discover Places</div>
+    <i class="fa-solid fa-bars" id="btn"></i>
+  </div>
+  <ul class="nav-list">
+    <% if user_signed_in? %>
+      <li>
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <span class="tooltip">Search</span>
+        <%= form_with url: search_path, local: true, method: :get do |f| %>
+          <%= f.text_field :word, placeholder: "Search" %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to root_path do %>
+          <i class="fa-solid fa-house"></i>
+          <span class="link_name">Home</span>
+        <% end %>
+        <span class="tooltip">Home</span>
+      </li>
+      <li>
+        <%= link_to user_path(current_user) do %>
+          <i class="fa-regular fa-user"></i>
+          <span class="link_name">My Page</span>
+        <% end %>
+        <span class="tooltip">My Page</span>
+      </li>
+      <li>
+        <%= link_to user_posts_path(current_user) do %>
+          <i class="fa-solid fa-signs-post"></i>
+          <span class="link_name">Post</span>
+        <% end %>
+        <span class="tooltip">Post</span>
+      </li>
+      <li>
+        <%= link_to new_post_path do %>
+          <i class="fa-solid fa-plus"></i>
+          <span class="link_name">New Post</span>
+        <% end %>
+        <span class="tooltip">New Post</span>
+      </li>
+      <li>
+        <%= link_to user_bookmarks_path(current_user) do %>
+          <i class="fa-solid fa-clipboard"></i>
+          <span class="link_name">Bookmarks</span>
+        <% end %>
+        <span class="tooltip">Bookmarks</span>
+      </li>
+      <li>
+        <%= link_to new_contact_path do %>
+          <i class="fa-solid fa-phone fa-lg"></i>
+          <span class="link_name">Contact Us</span>
+        <% end %>
+        <span class="tooltip">Contact Us</span>
+      </li>
+      <li class="profile">
+        <div class="profile_details">
+          <%= image_tag current_user.display_image, class: "rounded" %>
+          <div class="profile_content">
+            <div class="name">
+              <%= current_user.name %>
+            </div>
+          </div>
+        </div>
+        <div class="log_out">
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fa-solid fa-right-from-bracket"></i>
+          <% end %>
+        </div>
+      </li>
+    <% elsif admin_signed_in? %>
+      <li>
+        <%= link_to admin_root_path do %>
+          <i class="fa-solid fa-house"></i>
+          <span class="link_name">Home</span>
+        <% end %>
+        <span class="tooltip">Home</span>
+      </li>
+      <li>
+        <%= link_to admin_users_path do %>
+          <i class="fa-regular fa-user"></i>
+          <span class="link_name">Users</span>
+        <% end %>
+        <span class="tooltip">Users</span>
+      </li>
+      <li>
+        <%= link_to admin_comments_path do %>
+          <i class="fa-solid fa-comment"></i>
+          <span class="link_name">Comments</span>
+        <% end %>
+        <span class="tooltip">Comments</span>
+      </li>
+      <li>
+        <%= link_to admin_contacts_path do %>
+          <i class="fa-solid fa-phone fa-lg"></i>
+          <span class="link_name">Contacts</span>
+        <% end %>
+        <span class="tooltip">Contacts</span>
+      </li>
+      <li class="profile">
+        <div class="profile_details">
+          <div class="profile_content">
+            <div class="name">
+              <%= current_admin.email %>
+            </div>
+          </div>
+        </div>
+        <div class="log_out">
+          <%= link_to destroy_admin_session_path, method: :delete do %>
+            <i class="fa-solid fa-right-from-bracket"></i>
+          <% end %>
+        </div>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to root_path do %>
+          <i class="fa-solid fa-house"></i>
+          <span class="link_name">Home</span>
+        <% end %>
+        <span class="tooltip">Home</span>
+      </li>
+      <li>
+        <%= link_to about_path do %>
+          <i class="fa-regular fa-address-card"></i>
+          <span class="link_name">About</span>
+        <% end %>
+        <span class="tooltip">About</span>
+      </li>
+      <li>
+        <%= link_to new_user_registration_path do %>
+          <i class="fa-solid fa-user-plus"></i>
+          <span class="link_name">Sign In</span>
+        <% end %>
+        <span class="tooltip">Sign In</span>
+      </li>
+      <li>
+        <%= link_to new_user_session_path do %>
+          <i class="fa-solid fa-right-to-bracket"></i>
+          <span class="link_name">Log In</span>
+        <% end %>
+        <span class="tooltip">Log In</span>
+      </li>
+      <li>
+        <%= link_to new_contact_path do %>
+          <i class="fa-solid fa-phone fa-lg"></i>
+          <span class="link_name">Contact Us</span>
+        <% end %>
+        <span class="tooltip">Contact Us</span>
+      </li>
+    <% end %>
+  </ul>
+</div>

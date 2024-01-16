@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class = "mt-4 mb-4">お問い合わせ</h2>
+      <% if @contact.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+          <strong><%= @contact.errors.count %>件のエラーが発生しました:</strong>
+          <ul>
+            <% @contact.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <p>下記フォーマットにご記入いただき、内容をご確認のうえ送信してください。</p>
+      <p>お問い合わせの内容によっては、お時間を頂戴する場合がございます。</p>
+      <p>ご提案に対しましては、お返事を差し上げられない場合がございます。</p>
+
+      <%= form_with model: @contact do |f| %>
+        <div class="form-group">
+          <label>件名</label>
+          <%= f.text_field :title, autofocus: true, placeholder: "件名を入力してください。", class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <label>お問い合わせ内容</label>
+          <%= f.text_area :contact, placeholder: "お問い合わせ内容を入力してください。", class: "form-control" %>
+        </div>
+
+        <% if user_signed_in? %>
+          <%= f.hidden_field :email, value: current_user.email %>
+          <%= f.hidden_field :name, value: current_user.name %>
+        <% else %>
+          <div class="form-group">
+            <label>名前</label>
+            <%= f.text_field :name, placeholder: "例）山田太郎", class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label>メールアドレス</label>
+            <%= f.text_field :email, placeholder: "aaa@example.com", class: "form-control" %>
+          </div>
+        <% end %>
+
+        <div class="text-center mt-4 mb-4">
+          <%= f.submit "送信", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+      <%= link_to "過去の問い合わせはこちら", contacts_path %>
+    </div>
+  </div>
+</div>

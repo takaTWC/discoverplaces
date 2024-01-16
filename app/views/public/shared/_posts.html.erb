@@ -1,0 +1,22 @@
+<%= link_to post_path(post) do %>
+  <div class="post-item table-responsive mb-3">
+    <table class="table no-border">
+      <tbody>
+        <tr>
+          <td class="align-middle" style="width: 110px;">
+            <%= image_tag post.image, size: "100x100", class: "rounded" %>
+          </td>
+          <td class="align-middle" style="width: auto;">
+            <strong><%= post.title %></strong><br>
+            <%= truncate(post.description, length: 100) %>
+          </td>
+          <td class="align-middle" style="width: 160px;">
+            <i class="fa-regular fa-heart"></i> <%= post.favorites.count %><br>
+            <i class="fa-regular fa-comment"></i> <%= post.comments.count %><br>
+            <i class="fa-regular fa-eye"></i> <%= post.view_counts.count %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<% end %>

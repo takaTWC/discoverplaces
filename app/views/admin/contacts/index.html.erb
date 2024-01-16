@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="mt-4 mb-4">問い合わせ一覧</h2>
+      <%= link_to '新しい順', admin_contacts_path(latest: "true") %>
+      |<%= link_to '古い順', admin_contacts_path(old: "true") %>
+      <div class="table-responsive">
+        <table class = "table">
+          <thead>
+            <th>問い合わせ日</th>
+            <th>投稿者</th>
+            <th>会員登録</th>
+            <th>件名</th>
+            <th>対応状況</th>
+          </thead>
+          <tbody>
+            <% @contacts.first(10).each do |contact| %>
+              <tr>
+                <td><%= contact.created_at.strftime('%Y/%m/%d %I:%M:%S %p') %></td>
+                <td><%= contact.name %></td>
+                <td><%= contact.user_id.present? ? '済' : '未' %></td>
+                <td><%= link_to contact.title, admin_contact_path(contact) %></td>
+                <td><%= contact.support.present? ? '対応済み' : '未対応' %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="row flex justify-content-center">
+        <%= paginate @contacts %>
+      </div>
+    </div>
+  </div>
+</div>

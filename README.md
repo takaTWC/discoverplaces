@@ -19,20 +19,19 @@
 - 近場でいい場所を見つけたいとき
 - 旅行に行く際に事前調査するとき
 - 自分のおすすめスポットをみんなに知ってもらいたいとき
-​
-## 設計書
-- 後ほど作成
 
 ## 開発環境
-- OS：Linux(CentOS)
+- OS：Linux(Amazon Linux2)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
 ​
 ## 使用素材
-- 使用検討中
+- ユーザーアイコン(https://kotonohaworks.com/free-icons/user/)
+- トップ画像(https://www.photock.jp/)
+- サイドバー(https://www.youtube.com/watch?v=lxIQfVG9ZA8)
 
 ## ER図
 
-![ER Diagram](https://github.com/takaTWC/discoverplaces/blob/main/ER.drawio.svg)
+![ER Diagram](https://github.com/takaTWC/discoverplaces/blob/develop/ER.drawio.svg)

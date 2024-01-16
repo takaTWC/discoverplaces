@@ -1,0 +1,120 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-12">
+      <h2 class="mt-4 mb-4"><%= @user.name %>さんのマイページ</h2>
+    </div>
+    <div class="col-md-4 col-12 text-end">
+      <!--ログインしているユーザーかつゲストではない場合-->
+      <% if current_user == @user && @user.email != "guest@example.com" %>
+        <%= render "profile_edit" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row align-items-center">
+    <div class="col-md-4 col-12">
+      <div>
+        <%= image_tag @user.display_image, size: "200x200", class: "rounded" %>
+      </div>
+      <% if current_user != @user && @user.is_active %>
+        <div class="mt-2 follow">
+          <%= render "public/relationships/follow", user: @user %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-8 col-12">
+      <table>
+        <tr>
+          <th>ユーザー名：</th>
+          <td><%= @user.status_check_name %></td>
+        </tr>
+        <% if @user.email != "guest@example.com" %>
+          <tr>
+            <th>メールアドレス：</th>
+            <td><%= @user.email %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <th>自己紹介：</th>
+          <td><%= @user.introduction %></td>
+        </tr>
+        <tr>
+          <th>フォロー数：</th>
+          <td>
+            <%= link_to follows_user_path(@user) do %>
+              <span class="followers_count"><%= render "public/relationships/followers_count", user: @user %></span>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th>フォロワー数：</th>
+          <td>
+            <%= link_to followers_user_path(@user) do %>
+              <span class="followeds_count"><%= render "public/relationships/followeds_count", user: @user %></span>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="col-12">
+    <h4 class="mt-4 mb-4">投稿一覧</h4>
+    <% @user.posts.order(created_at: :desc).first(5).each do |post| %>
+      <%= render "public/shared/posts", post: post %>
+    <% end %>
+    <div class="row">
+      <div class="col text-right">
+        <%= link_to "more", user_posts_path(@user) %>
+      </div>
+    </div>
+    <!--自身のページにのみ表示-->
+    <% if current_user == @user %>
+      <h4 class="mt-4 mb-4">クリップ一覧</h4>
+      <% @bookmarks.each do |post| %>
+        <%= render "public/shared/posts", post: post %>
+      <% end %>
+      <div class="row">
+        <div class="col text-right">
+          <%= link_to "more", bookmarks_user_path(@user) %>
+        </div>
+      </div>
+      <h4 class="mt-4 mb-4">コメント一覧</h4>
+      <%= render "public/shared/comment_view", comments: @comments %>
+      <div class="row">
+        <div class="col text-right">
+          <%= link_to "more", comments_user_path(@user) %>
+        </div>
+      </div>
+    <% end %>
+
+    <!--ログインしているユーザーかつゲストではない場合-->
+    <% if current_user == @user && @user.email != "guest@example.com" %>
+      <!-- 退会ボタン -->
+      <div class="d-flex justify-content-center align-items-center mb-5">
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+          退会する
+        </button>
+      </div>
+
+      <!-- 退会フォームモーダル -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">退会確認</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              本当に退会しますか？この操作は元に戻せません。
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+              <%= link_to "退会する", disable_users_path(@user.id), method: :patch, class: "btn btn-danger" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

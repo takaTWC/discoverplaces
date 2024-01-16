@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <h2 class="mt-4 mb-4">件名：<%= @contact.title %></h2>
+  </div>
+  <div class="row">
+    <% if @contact.user_id.present? %>
+      <div class="col-md-4 col-12">
+        <div>
+          <%= image_tag @user.display_image, size: "200x200", class: "rounded" %>
+        </div>
+      </div>
+      <div class="col-md-8 col-12">
+        <table>
+          <tbody>
+            <tr>
+              <th>ユーザー名：</th>
+              <td><%= @user.name %></td>
+            </tr>
+            <tr>
+              <th>メールアドレス：</th>
+              <td><%= @user.email %></td>
+            </tr>
+            <tr>
+              <th>自己紹介：</th>
+              <td><%= @user.introduction %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <div class="col-12">
+        <p>この問い合わせをしたユーザーは会員登録をしていません。</p>
+        <table>
+          <tbody>
+            <tr>
+              <th>投稿者：</th>
+              <td><%= @contact.name %></td>
+            </tr>
+            <tr>
+              <th>メールアドレス：</th>
+              <td><%= @contact.email %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h4 class="mt-4 mb-4">問い合わせ内容</h4>
+      <p><%= @contact.contact %></p>
+      <h4 class="mt-4 mb-4 d-flex align-items-center">
+        <span>返信内容（顧客に公開されます）</span>
+        <%= render "reply" %>
+      </h4>
+      <p><%= @contact.reply.present? ? @contact.reply : '返信はありません。' %></p>
+      <h4 class="mt-4 mb-4 d-flex align-items-center">
+        <span>対応メモ（顧客には公開されません）</span>
+        <%= render "support" %>
+      </h4>
+      <p><%= @contact.support %></p>
+    </div>
+  </div>
+</div>

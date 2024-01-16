@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="mt-4 mb-4">フォロー中</h2>
+      <table class='table'>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td class="align-middle">
+                <%= image_tag user.display_image, size: "50x50", class: "rounded" %>
+              </td>
+              <td class="align-middle">
+                <% if user.is_active %>
+                  <%= link_to user_path(user) do %>
+                    <%= user.status_check_name %>
+                  <% end %>
+                <% else %>
+                  <%= user.status_check_name %>
+                <% end %>
+              </td>
+              <td class="align-middle">
+                <% if user.is_active %>
+                  <%= link_to follows_user_path(user) do %>
+                    <%= user.followers.count %> フォロー
+                  <% end %>
+                <% end %>
+              </td>
+              <td class="align-middle">
+                <% if user.is_active %>
+                  <%= link_to followers_user_path(user) do %>
+                    <%= user.followeds.count %> フォロワー
+                  <% end %>
+                <% end %>
+              </td>
+              <td class="align-middle">
+                <% if user.following?(current_user) && current_user.following?(user) && user.is_active %>
+                  相互フォロー
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
