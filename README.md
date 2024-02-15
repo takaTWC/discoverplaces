@@ -32,6 +32,10 @@
 - トップ画像(https://www.photock.jp/)
 - サイドバー(https://www.youtube.com/watch?v=lxIQfVG9ZA8)
 
+## 詳細設計
+- テーブル定義書(https://docs.google.com/spreadsheets/d/10L7NuU-XMfHjdREACLMkLIY-QBERv4Qf/edit?usp=sharing&ouid=114356861545491722342&rtpof=true&sd=true)
+- アプリケーション詳細設計書(https://docs.google.com/spreadsheets/d/11F-5KfoeouGgTSh4bq8vnoPhxlYULP-GwZi-GbEBImQ/edit?usp=sharing)
+
 ## ER図
 
 ![ER Diagram](https://github.com/takaTWC/discoverplaces/blob/develop/ER.drawio.svg)
