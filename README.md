@@ -35,6 +35,8 @@
 ## 詳細設計
 - テーブル定義書(https://docs.google.com/spreadsheets/d/10L7NuU-XMfHjdREACLMkLIY-QBERv4Qf/edit?usp=sharing&ouid=114356861545491722342&rtpof=true&sd=true)
 - アプリケーション詳細設計書(https://docs.google.com/spreadsheets/d/11F-5KfoeouGgTSh4bq8vnoPhxlYULP-GwZi-GbEBImQ/edit?usp=sharing)
+- ワイヤーフレーム(https://drive.google.com/file/d/1RK0k0OsW62ISwKLF6dQ8tMSafnRtoJKw/view?usp=sharing)
+- 画面遷移図(https://drive.google.com/file/d/1HrQtrSLl0geY1debwtlaG59SXaf2fS3i/view?usp=drive_link)
 
 ## ER図
 
